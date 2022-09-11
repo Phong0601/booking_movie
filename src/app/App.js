@@ -1,5 +1,5 @@
 
-import '../App.css';
+import '../App.scss';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import Home from 'features/movies/pages/home';
 import Detail from 'features/movies/pages/detail';

@@ -1,6 +1,5 @@
-
-header{
-    .phong{
-        color: yellow;
-    }
+.Header {
+  &__title {
+    color: $color-seccond;
+  }
 }
