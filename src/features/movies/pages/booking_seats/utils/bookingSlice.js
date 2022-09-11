@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const bookingReducer = createSlice({
+const bookingSlice = createSlice({
     name:'booking',
     initialState:{},
     reducers:{},
@@ -7,4 +7,4 @@ const bookingReducer = createSlice({
 
     }
 })
-export default bookingReducer
+export default bookingSlice

@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-const homeReducer = createSlice({
+import { fetchMovie } from "./homeAction";
+const homeSlice = createSlice({
     name:'home',
-    initialState:{},
+    initialState:{
+        movieList:null,
+    },
     reducers:{},
     extraReducers(builder){
-
+        builder.addCase(fetchMovie.fulfilled,(state,action)=>{
+            state.movieList=action.payload
+        })
     }
 })
-export default homeReducer
+export default homeSlice

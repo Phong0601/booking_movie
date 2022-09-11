@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const detailReducer = createSlice({
+const detailSlice = createSlice({
     name:'detail',
     initialState:{},
     reducers:{},
@@ -7,4 +7,4 @@ const detailReducer = createSlice({
 
     }
 })
-export default detailReducer
+export default detailSlice
