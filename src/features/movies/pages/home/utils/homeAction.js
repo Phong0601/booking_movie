@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import instance from "api/instance";
 export const fetchMovie = createAsyncThunk('home/fetchMovie',
 async (params)=>{
-    console.log(params);
+
     try {
         const res = await instance.request({
             url:'/api/QuanLyPhim/LayDanhSachPhimPhanTrang',
@@ -13,7 +13,7 @@ async (params)=>{
                 soPhanTuTrenTrang: params.pageSize,
             }
         })
-        console.log(res.data.content);
+       
         return res.data.content
     } catch (error) {
         console.log(error);

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import FilterMovies from './components/filterMovies/FilterMovies';
 import { fetchMovie } from './utils/homeAction';
 import { movies } from './utils/homeSelector';
 
 const Home = () => {
   const dispatch= useDispatch();
   const listMovies = useSelector(movies);
-  console.log(listMovies);
+ 
   const [config,setConfig]=useState({
     currentPage:'1',
     pageSize:'8'
@@ -18,7 +19,9 @@ const Home = () => {
     fetchMovies();
   },[])
   return (
-    <div>Home</div>
+    <div>
+      <FilterMovies/>
+    </div>
   )
 }
 

@@ -1,5 +1,40 @@
 .Header {
-  &__title {
-    color: $color-seccond;
+  background-color: #fff;
+  
+  box-shadow: rgba(50, 50, 93, 0.25) 10px -9px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    .left {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      .ticket {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        p {
+          padding: 0 1rem;
+          line-height: 2rem;
+          color: #a50064;
+          font-weight: 700;
+        }
+      }
+    }
+    .right {
+      display: flex;
+      justify-content: end;
+      font-size: 1.5rem;
+      width: 70%;
+      border-bottom: none;
+      color: #525252;
+      font-weight: 600;
+      .nav-sub {
+        margin-left: 20px;
+      }
+    }
   }
 }
