@@ -10,27 +10,27 @@ import "slick-carousel/slick/slick-theme.css";
 import NowShowingMovie from "./components/NowShowingMovie";
 
 const Home = () => {
-	const dispatch = useDispatch();
-	const listMovies = useSelector(movies);
+  const dispatch = useDispatch();
+  const listMovies = useSelector(movies);
 
-	const [config, setConfig] = useState({
-		currentPage: "1",
-		pageSize: "8",
-	});
-	const fetchMovies = async () => {
-		dispatch(fetchMovie(config));
-	};
-	useEffect(() => {
-		fetchMovies();
-	}, []);
-	return (
-		<div>
-			<FilterMovies />
-			{/* <Banner /> */}
-			<NowShowingMovie />
-			<div style={{ color: "#fff" }}>asdasda</div>
-		</div>
-	);
+  const [config, setConfig] = useState({
+    currentPage: "1",
+    pageSize: "8",
+  });
+  const fetchMovies = async () => {
+    dispatch(fetchMovie(config));
+  };
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+  return (
+    <div>
+      {/* <Banner /> */}
+      <NowShowingMovie />
+      <FilterMovies />
+      <div style={{ color: "#fff" }}>asdasda</div>
+    </div>
+  );
 };
 
 export default Home;
