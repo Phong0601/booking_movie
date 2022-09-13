@@ -1,0 +1,50 @@
+.Banner {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	background-color: $bg-pink-1;
+	.slider {
+		.card {
+			max-width: 115.2rem;
+			margin: auto;
+			display: flex !important;
+			justify-content: space-between;
+			align-items: center;
+
+			.card-left {
+				h1 {
+					font-size: 3.25rem;
+					font-weight: bold;
+					color: $color-pink-1;
+				}
+				width: 50%;
+
+				.description {
+					display: grid;
+					row-gap: 0.75rem;
+
+					.description-item {
+						display: flex;
+
+						.item-text {
+							padding-left: 10px;
+						}
+					}
+				}
+			}
+
+			.card-right {
+				width: 50%;
+				.card-img {
+					display: flex;
+					justify-content: flex-end;
+					img {
+						width: 500px;
+						height: 250px;
+						border-radius: 5px;
+						object-fit: cover;
+					}
+				}
+			}
+		}
+	}
+}
