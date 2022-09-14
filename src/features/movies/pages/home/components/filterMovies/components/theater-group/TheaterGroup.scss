@@ -1,0 +1,45 @@
+.cover {
+  height: 100vh;
+  border: 1px solid orange;
+  border-radius: 10px;
+  background-color: #fff;
+  .sider {
+    background-color: #fff;
+
+    .sider--menu {
+      overflow: auto;
+      height: 100%;
+    }
+  }
+  .left {
+    background-color: #fff;
+    .content {
+      padding: 12px !important;
+      overflow: auto;
+      .site-card-wrapper{
+         
+            .card{
+              border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200;
+                height: 300px;
+                border: 1px solid orange;
+            }
+          
+        
+      }
+      
+    }
+  }
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff; 
+    height: 10rem;
+    align-items: center;
+    border: 1px solid orange;
+    border-radius: 10px;
+}
