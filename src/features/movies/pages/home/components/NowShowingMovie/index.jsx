@@ -4,19 +4,21 @@ import React, { useRef } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
+import { fetchMovieListAction } from "../../utils/homeAction";
+import { movieListSelector } from "../../utils/homeSelector";
+import SampleNextArrow from "../SliderArrow/SampleNextArrow";
+import SamplePrevArrow from "../SliderArrow/SamplePrevArrow";
 import ShowingMovieItem from "./components/ShowingMovieItem";
-import { fetchNowShowingMovieAction } from "./utils/nowShowingMovieAction";
-import { nowShowingMovie } from "./utils/nowShowingMovieSelector";
 
 function NowShowingMovie() {
 	const dispatch = useDispatch();
 
-	const movieList = useSelector(nowShowingMovie);
+	const movieList = useSelector(movieListSelector);
 	// Create next arrow  and prev arrow
-	const slider = useRef(null);
+	// const slider = useRef(null);
 
 	const fetchNowShowingMovie = () => {
-		dispatch(fetchNowShowingMovieAction());
+		dispatch(fetchMovieListAction());
 	};
 
 	useEffect(() => {
@@ -38,7 +40,10 @@ function NowShowingMovie() {
 		slidesToScroll: 5,
 		autoplay: false,
 		autoplaySpeed: 2000,
-		arrows: false,
+		// arrows: false,
+		nextArrow: <SampleNextArrow />,
+		prevArrow: <SamplePrevArrow />,
+
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -72,7 +77,7 @@ function NowShowingMovie() {
 			<div className="container">
 				<h1 className="title">Phim đang chiếu</h1>
 
-				<div
+				{/* <div
 					className="next-arrow"
 					onClick={() => slider?.current.slickNext()}
 				>
@@ -83,9 +88,9 @@ function NowShowingMovie() {
 					onClick={() => slider?.current.slickPrev()}
 				>
 					<LeftOutlined style={{ color: "black" }} />
-				</div>
+				</div> */}
 
-				<Slider className="slider" ref={slider} {...settings}>
+				<Slider {...settings}>
 					{showingMovie?.map((item) => {
 						return (
 							<ShowingMovieItem

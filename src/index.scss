@@ -3,10 +3,20 @@
 //Header --by Phong
 @import "./common/components/Header/header";
 // Filter Components --by Phong
-@import 'features/movies/pages/home/components/filterMovies/FilterMovies.scss';
+@import "features/movies/pages/home/components/filterMovies/FilterMovies.scss";
 // Home -> Banner --by Hung
 @import "features/movies/pages/home/components/Banner/banner";
 // Home -> NowShowingMovie --by Hung
 @import "features/movies/pages/home/components/NowShowingMovie/nowShowingMovie";
 // Home -> NowShowingMovie -> ShowingMovieItem  --by Hung
 @import "features/movies/pages/home/components/NowShowingMovie/components/ShowingMovieItem/showingMovieItem";
+// Home -> UpcomingMovie  --by Hung
+@import "features/movies/pages/home/components/UpcomingMovie/upcomingMovie";
+// Home -> UpcomingMovie -> UpcomingMovieItem  --by Hung
+@import "features/movies/pages/home/components/UpcomingMovie/components/UpcomingMovieItem/upcomingMovieItem";
+// Home -> Arrow Slick --by Hung
+@import "features/movies/pages/home/components/SliderArrow/arrowSlick";
+// Home -> Trailer  --by Hung
+@import "features/movies/pages/home/components/Trailer/trailer";
+// Home -> TrailerItem --by Hung
+@import "features/movies/pages/home/components/Trailer/components/TrailerItem/trailerItem";

@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { fetchMovieListAction } from "../../utils/homeAction";
 import { movieListSelector } from "../../utils/homeSelector";
-import UpcomingMovieItem from "./components/UpcomingMovieItem";
+import TrailerItem from "./components/TrailerItem";
 
-function UpcomingMovie() {
+function Trailer() {
 	const dispatch = useDispatch();
 
 	const movieList = useSelector(movieListSelector);
@@ -25,8 +25,8 @@ function UpcomingMovie() {
 
 	if (!movieList) return <Spin size="large" />;
 
-	const upcomingMovie = movieList.filter((item) => {
-		return item.dangChieu === false;
+	const nowShowingMovie = movieList.filter((item) => {
+		return item.dangChieu === true;
 	});
 
 	// Setting for slick slider
@@ -34,8 +34,8 @@ function UpcomingMovie() {
 		dots: true,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 5,
-		slidesToScroll: 5,
+		slidesToShow: 4,
+		slidesToScroll: 4,
 		autoplay: false,
 		autoplaySpeed: 2000,
 		arrows: false,
@@ -68,9 +68,9 @@ function UpcomingMovie() {
 	};
 
 	return (
-		<div className="UpcomingMovie">
+		<div className="Trailer">
 			<div className="container">
-				<h1 className="title">Phim sắp chiếu</h1>
+				<h1 className="title">Trailer mới nhất</h1>
 
 				<div
 					className="next-arrow"
@@ -86,10 +86,8 @@ function UpcomingMovie() {
 				</div>
 
 				<Slider className="slider" ref={slider} {...settings}>
-					{upcomingMovie?.map((item) => {
-						return (
-							<UpcomingMovieItem key={item.maPhim} item={item} />
-						);
+					{nowShowingMovie?.map((item) => {
+						return <TrailerItem key={item.maPhim} item={item} />;
 					})}
 				</Slider>
 			</div>
@@ -97,4 +95,4 @@ function UpcomingMovie() {
 	);
 }
 
-export default UpcomingMovie;
+export default Trailer;

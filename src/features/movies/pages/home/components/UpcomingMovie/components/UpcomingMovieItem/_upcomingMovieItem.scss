@@ -1,4 +1,4 @@
-.ShowingMovieItem {
+.UpcomingMovieItem {
 	.card {
 		height: 450px;
 		margin: 8px;
@@ -25,13 +25,11 @@
 		}
 
 		.card-body {
-			height: 25%;
+			height: 35%;
 			overflow: hidden;
 			.movie-title {
 				margin-top: 10px;
-				font-size: 1.6rem;
-				font-weight: 400;
-				color: $color-white-1;
+				@extend .title-black-1;
 			}
 			.movie-desc {
 				font-size: 1.4rem;

@@ -27,4 +27,16 @@ html {
   max-width: 115.2rem;
   padding: auto 3.2rem;
   margin: 0 auto;
+}
+
+.title-pink-1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #a50064;
+}
+
+.title-black-1 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #343434;
 }/*# sourceMappingURL=main.css.map */

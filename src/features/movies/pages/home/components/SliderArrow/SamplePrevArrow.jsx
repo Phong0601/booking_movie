@@ -4,8 +4,13 @@ function SamplePrevArrow(props) {
 	const { className, style, onClick } = props;
 	return (
 		<div
-			className={className}
-			style={{ ...style, display: "block", background: "green" }}
+			className={`${className} ${["prevArrow"]}`}
+			style={{
+				...style,
+				display: "block",
+				transform: "translate(60%, -400%)",
+				zIndex: 5,
+			}}
 			onClick={onClick}
 		/>
 	);
