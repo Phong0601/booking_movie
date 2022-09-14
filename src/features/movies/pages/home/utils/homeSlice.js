@@ -10,7 +10,35 @@ const homeSlice = createSlice({
     },
     reducers:{},
     extraReducers:(builder)=>{
-        // builder.addCase(fetchMovie.fulfilled,(state,action)=>{
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          // builder.addCase(fetchMovie.fulfilled,(state,action)=>{
         //     state.movieList=action.payload
         // });
         builder.addCase(fetchTheater.fulfilled,(state,action)=>{

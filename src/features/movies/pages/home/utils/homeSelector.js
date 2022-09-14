@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 //demo
 // export const movies = (state)=>state.movieHome.movieList
 //lấy ds hệ thống rạp --by Phong
