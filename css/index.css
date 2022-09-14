@@ -30,6 +30,18 @@ html {
   margin: 0 auto;
 }
 
+.title-pink-1, .UpcomingMovie .container .title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #a50064;
+}
+
+.title-black-1, .UpcomingMovieItem .card .card-body .movie-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #343434;
+}
+
 .Header {
   background-color: #fff;
   box-shadow: rgba(50, 50, 93, 0.25) 10px -9px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -170,38 +182,138 @@ html {
   background-color: rgb(213, 208, 208);
 }
 
-.Card {
+.ShowingMovieItem .card {
   height: 450px;
   margin: 8px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
 }
-.Card .card-top {
+.ShowingMovieItem .card .card-top {
   width: 100%;
   height: 65%;
+  border-radius: 8px;
+  overflow: hidden;
 }
-.Card .card-top img {
+.ShowingMovieItem .card .card-top img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  transition: all 0.5s;
 }
-.Card .card-body {
+.ShowingMovieItem .card .card-top img:hover {
+  transform: scale(1.1);
+}
+.ShowingMovieItem .card .card-body {
   height: 25%;
   overflow: hidden;
 }
-.Card .card-body .movie-title {
+.ShowingMovieItem .card .card-body .movie-title {
   margin-top: 10px;
   font-size: 1.6rem;
   font-weight: 400;
   color: #ffffff;
 }
-.Card .card-body .movie-desc {
+.ShowingMovieItem .card .card-body .movie-desc {
   font-size: 1.4rem;
   color: #837d7d;
   margin: 0;
 }
-.Card .card-bottom {
+.ShowingMovieItem .card .card-bottom {
   height: 10%;
+}
+
+.UpcomingMovie {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+.UpcomingMovie .container {
+  position: relative;
+}
+.UpcomingMovie .container .title {
+  text-align: center;
+}
+.UpcomingMovie .container .next-arrow {
+  background: white;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgb(196, 195, 195);
+  display: inline-block;
+  position: absolute;
+  top: 35%;
+  right: -18px;
+  cursor: pointer;
+  transition: all 0.5s;
+  z-index: 5;
+}
+.UpcomingMovie .container .next-arrow:hover {
+  background-color: rgb(213, 208, 208);
+}
+.UpcomingMovie .container .prev-arrow {
+  background: white;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgb(196, 195, 195);
+  display: inline-block;
+  position: absolute;
+  top: 35%;
+  left: -18px;
+  cursor: pointer;
+  transition: all 0.5s;
+  z-index: 5;
+}
+.UpcomingMovie .container .prev-arrow:hover {
+  background-color: rgb(213, 208, 208);
+}
+
+.UpcomingMovieItem .card {
+  height: 450px;
+  margin: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.UpcomingMovieItem .card .card-top {
+  width: 100%;
+  height: 65%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.UpcomingMovieItem .card .card-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s;
+}
+.UpcomingMovieItem .card .card-top img:hover {
+  transform: scale(1.1);
+}
+.UpcomingMovieItem .card .card-body {
+  height: 35%;
+  overflow: hidden;
+}
+.UpcomingMovieItem .card .card-body .movie-title {
+  margin-top: 10px;
+}
+.UpcomingMovieItem .card .card-body .movie-desc {
+  font-size: 1.4rem;
+  color: #837d7d;
+  margin: 0;
+}
+.UpcomingMovieItem .card .card-bottom {
+  height: 10%;
+}
+
+.prevArrow:before,
+.nextArrow:before {
+  color: white !important;
+  font-size: 40px !important;
 }/*# sourceMappingURL=index.css.map */

@@ -1,6 +1,6 @@
-.ShowingMovieItem {
+.TrailerItem {
 	.card {
-		height: 450px;
+		height: 250px;
 		margin: 8px;
 		cursor: pointer;
 
@@ -12,6 +12,7 @@
 			height: 65%;
 			border-radius: 8px;
 			overflow: hidden;
+			position: relative;
 
 			img {
 				width: 100%;
@@ -22,10 +23,23 @@
 					transform: scale(1.1);
 				}
 			}
+
+			.icon-play {
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				// transform: translate(-50%, -50%);
+
+				.btn-play {
+					color: white;
+					font-weight: 300;
+					font-size: 40px;
+				}
+			}
 		}
 
 		.card-body {
-			height: 25%;
+			height: 35%;
 			overflow: hidden;
 			.movie-title {
 				margin-top: 10px;
@@ -39,8 +53,7 @@
 				margin: 0;
 			}
 		}
-		.card-bottom {
-			height: 10%;
-		}
+
+		// Modal
 	}
 }
