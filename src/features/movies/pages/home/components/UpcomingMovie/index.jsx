@@ -26,7 +26,7 @@ function UpcomingMovie() {
 	if (!movieList) return <Spin size="large" />;
 
 	const upcomingMovie = movieList.filter((item) => {
-		return item.dangChieu === false;
+		return item.sapChieu === true;
 	});
 
 	// Setting for slick slider

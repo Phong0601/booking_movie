@@ -1,10 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-const detailSlice = createSlice({
-    name:'detail',
-    initialState:{},
-    reducers:{},
-    extraReducers(builder){
+import { fetchSelectedMovieAction } from "./detailAction";
 
-    }
-})
-export default detailSlice
+const initialState = {
+	movieInfo: null,
+};
+
+const detailSlice = createSlice({
+	name: "detail",
+	initialState: initialState,
+	reducers: {},
+	extraReducers(builder) {
+		builder.addCase(fetchSelectedMovieAction.fulfilled, (state, action) => {
+			state.movieInfo = action.payload;
+		});
+	},
+});
+export default detailSlice;

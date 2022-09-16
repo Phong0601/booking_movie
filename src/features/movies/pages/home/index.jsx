@@ -11,12 +11,12 @@ import Trailer from "./components/Trailer";
 const Home = () => {
 	return (
 		<div>
-			<Banner />
+			{/* <Banner /> */}
 			<NowShowingMovie />
 			<UpcomingMovie />
-			<Trailer />
-			<FilterMovies/>
+			{/* <Trailer /> */}
 			{/* <FilterMovies /> */}
+
 			<div style={{ color: "#000" }}>Footer</div>
 		</div>
 	);

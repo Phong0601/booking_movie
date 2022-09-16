@@ -1,12 +1,19 @@
 import { Card, Rate } from "antd";
 import React from "react";
+import { useHistory } from "react-router-dom";
 const { Meta } = Card;
 
 function ShowingMovieItem(props) {
-	const { maPhim, tenPhim, moTa, hinhAnh, danhGia } = props.item;
+	const { maPhim, biDanh, tenPhim, moTa, hinhAnh, danhGia } = props.item;
+
+	const history = useHistory();
+
+	const goToDetail = () => {
+		history.push("/detail/" + maPhim + "/" + biDanh);
+	};
 
 	return (
-		<div className="ShowingMovieItem">
+		<div className="ShowingMovieItem" onClick={goToDetail}>
 			<div className="card">
 				<div className="card-top">
 					<img src={hinhAnh} alt="" />

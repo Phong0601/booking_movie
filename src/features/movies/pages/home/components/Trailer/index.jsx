@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { fetchMovieListAction } from "../../utils/homeAction";
 import { movieListSelector } from "../../utils/homeSelector";
+import SampleNextArrow from "../SliderArrow/SampleNextArrow";
+import SamplePrevArrow from "../SliderArrow/SamplePrevArrow";
 import TrailerItem from "./components/TrailerItem";
 
 function Trailer() {
@@ -13,7 +15,7 @@ function Trailer() {
 
 	const movieList = useSelector(movieListSelector);
 	// Create next arrow  and prev arrow
-	const slider = useRef(null);
+	// const slider = useRef(null);
 
 	const fetchUpcomingMovie = () => {
 		dispatch(fetchMovieListAction());
@@ -38,7 +40,9 @@ function Trailer() {
 		slidesToScroll: 4,
 		autoplay: false,
 		autoplaySpeed: 2000,
-		arrows: false,
+		nextArrow: <SampleNextArrow />,
+		prevArrow: <SamplePrevArrow />,
+
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -72,20 +76,7 @@ function Trailer() {
 			<div className="container">
 				<h1 className="title">Trailer mới nhất</h1>
 
-				<div
-					className="next-arrow"
-					onClick={() => slider?.current.slickNext()}
-				>
-					<RightOutlined style={{ color: "black" }} />
-				</div>
-				<div
-					className="prev-arrow"
-					onClick={() => slider?.current.slickPrev()}
-				>
-					<LeftOutlined style={{ color: "black" }} />
-				</div>
-
-				<Slider className="slider" ref={slider} {...settings}>
+				<Slider className="slider" {...settings}>
 					{nowShowingMovie?.map((item) => {
 						return <TrailerItem key={item.maPhim} item={item} />;
 					})}

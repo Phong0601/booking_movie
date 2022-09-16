@@ -51,7 +51,7 @@ function TrailerItem(props) {
 	return (
 		<div className="TrailerItem">
 			<div className="card">
-				{/* {console.log(getId(trailer), trailer)} */}
+				{console.log(getId(trailer), trailer)}
 				<div className="card-top" onClick={showModal}>
 					<img src={hinhAnh} alt="" />
 					<div className="icon-play">
