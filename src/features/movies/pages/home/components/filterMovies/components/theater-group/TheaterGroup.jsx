@@ -1,37 +1,57 @@
 import { movieTheaterGroup } from "features/movies/pages/home/utils/homeSelector";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Spin, Layout, Menu, Row, Col, Card } from "antd";
+import { Spin, Layout, Menu, Row, Col, Card, Button } from "antd";
 import "./TheaterGroup.scss";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import DateTheater from "../date-custom/DateTheater";
 const TheaterGroup = (props) => {
   const { Meta } = Card;
   const { movieTheaterMovie, theaterList, theaterGroupFetch } = props;
-
+  const history = useHistory();
+  //get index for lstCumRap => show movies based on theater cluster
   const [index, setIndex] = useState("0");
-  const [theater, setTheater] = useState("BHDStar");
 
   if (!movieTheaterMovie) return <Spin></Spin>;
-  console.log(movieTheaterMovie);
-  const items1 = theaterList.map((theater, index) => ({
-    label: <img width={60} src={theater.logo} />,
+  //Go Pages Details with idMovies --by Phong
+  const goToDetail = (idMovies) => {
+    history.push("/detail/" + idMovies);
+  };
+  //Go Pages Details with idPremiere --by Phong
+  const goToBooking = (idPremiere) => {
+    history.push("/booking/" + idPremiere);
+  };
+  //setup Menu.Item ANTD recommended, header--menu
+  const items1 = theaterList.map((theater) => ({
+    label: (
+      <button className="btn--header">
+        <img className="img--header" src={theater.logo} />
+      </button>
+    ),
     key: theater.maHeThongRap,
   }));
-
+  //setup Menu.Item ANTD recommended, slider--menu
   const items2 = movieTheaterMovie[0].lstCumRap.map((theaterGroup, index) => ({
     label: (
-      <div>
-        <img width={40} src={movieTheaterMovie[0].logo} />{" "}
-        <p style={{ display: "inline" }}>{theaterGroup.tenCumRap}</p>
+      <div className="sider--items">
+        <div className="sider--img">
+          {" "}
+          <img width={60} src={movieTheaterMovie[0].logo} />
+        </div>
+        <div className="theater--name">
+          <p style={{ display: "inline" }}>{theaterGroup.tenCumRap}</p>
+        </div>
       </div>
     ),
 
     key: index,
   }));
+ 
 
   return (
     <Layout style={{ backgroundColor: "#fff" }}>
-      <Layout.Header className="header">
-        <div className="logo" style={{ display: "inline" }}>
+      <Layout.Header  className="header__filter">
+        <div className="logo">
           <svg
             width={32}
             height={32}
@@ -54,11 +74,14 @@ const TheaterGroup = (props) => {
           </svg>
         </div>
         <Menu
-        style={{border:'none'}}
+          
+          className="menu--header"
+          style={{ border: "none" }}
           onClick={(e) => {
             theaterGroupFetch(e.key);
+            setIndex("0");
           }}
-          theme="light"
+          theme="light  "
           mode="horizontal"
           defaultSelectedKeys={["BHDStar"]}
           items={items1}
@@ -66,23 +89,23 @@ const TheaterGroup = (props) => {
       </Layout.Header>
 
       <Layout
-        className="cover"
+        className="content__cover"
         style={{
           padding: "24px 0",
         }}
       >
-        <Layout.Sider className=" sider">
-          <Menu
+        <Layout.Sider width={300} collapsedWidth='0' breakpoint="sm" className=" ant-layout-sider ant-layout-sider-light sider">
+          <Menu 
             className="sider--menu"
             onClick={(e) => {
               setIndex(e.key);
             }}
             mode="inline"
-            defaultSelectedKeys={["0"]}
+            selectedKeys={index}
             items={items2}
           />
         </Layout.Sider>
-        <Layout className="left">
+        <Layout className="content">
           <Layout.Content
             className="site-layout-background content"
             style={{
@@ -92,31 +115,41 @@ const TheaterGroup = (props) => {
             }}
           >
             <div className="site-card-wrapper">
-              <Row gutter={[8, 8]}>
-                {movieTheaterMovie[0]?.lstCumRap[index].danhSachPhim.map(
-                  (movies) => {
+              {movieTheaterMovie[0]?.lstCumRap[index].danhSachPhim.map(
+                (movies) => {
+                  if (movies.dangChieu) {
                     return (
-                      <Col className="col" span={12}>
-                        <Card
-                          className="card"
-                          cover={
-                            <img
-                              style={{cursor:'pointer', width: "100%", height: "200px",borderRadius:'12px' }}
-                              alt="example"
-                              src={movies.hinhAnh}
-                            />
-                          }
-                        >
-                          <Meta
-                            style={{ display: "inline" }}
-                            title={movies.tenPhim}
+                      <Row  key={movies.maPhim} className="card">
+                        <Col span={8}  md={{span:6}} lg={{span:6}} xl={{span:8}} className="col--img">
+                          <img
+                            onClick={() => {
+                              goToDetail(movies.maPhim);
+                            }}
+                            width={95}
+                            src={movies.hinhAnh}
                           />
-                        </Card>
-                      </Col>
+                        </Col>
+                        <Col span={16} md={{span:18}} lg={{span:18}} xl={{span:16}}className="col--title">
+                          <div>
+                            <h2>{movies.tenPhim}</h2>
+                            <h3>Xuất Chiếu</h3>
+                            <Row>
+                              {movies.lstLichChieuTheoPhim.map((time) => {
+                                return (
+                                  <Col key={time.maLichChieu} span={6} lg={{span:6}} md={{span:8}} sm={{span:12}} style={{ width: "20%" }}>
+                                    <DateTheater time={time} goToBooking={goToBooking}/>
+                                  
+                                  </Col>
+                                );
+                              })}
+                            </Row>
+                          </div>
+                        </Col>
+                      </Row>
                     );
                   }
-                )}
-              </Row>
+                }
+              )}
             </div>
           </Layout.Content>
         </Layout>

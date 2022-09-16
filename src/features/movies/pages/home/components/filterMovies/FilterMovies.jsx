@@ -28,9 +28,10 @@ const FilterMovies = () => {
   }
   return (
     <div className="filter">
-
       <div className="container">
-        <h1 style={{textAlign:'center',color:'#a50064'}}>Lịch Chiếu Phim</h1>
+        <h1 style={{ textAlign: "center", color: "#a50064" }}>
+          Lịch Chiếu Phim
+        </h1>
         <TheaterGroup
           movieTheaterMovie={movieTheaterMovie}
           theaterGroupFetch={theaterGroupFetch}

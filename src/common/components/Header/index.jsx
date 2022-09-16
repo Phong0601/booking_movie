@@ -78,7 +78,7 @@ const Header = () => {
 		},
 	];
 	return (
-		<Layout className="Header" style={{ display: "block" }}>
+		<Layout className="Header" style={{ display: "block",backgroundColor:'#fff' }}>
 			<div className="container">
 				<Layout.Header className="navbar">
 					<div className="left">

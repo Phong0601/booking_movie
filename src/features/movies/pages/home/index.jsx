@@ -12,10 +12,10 @@ const Home = () => {
 	return (
 		<div>
 			{/* <Banner /> */}
-			<NowShowingMovie />
-			<UpcomingMovie />
+			{/* <NowShowingMovie /> */}
+			{/* <UpcomingMovie /> */}
 			{/* <Trailer /> */}
-			{/* <FilterMovies /> */}
+			<FilterMovies />
 
 			<div style={{ color: "#000" }}>Footer</div>
 		</div>
