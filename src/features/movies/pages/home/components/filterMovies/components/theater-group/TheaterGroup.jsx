@@ -33,8 +33,7 @@ const TheaterGroup = (props) => {
   }));
   //setup Menu.Item ANTD recommended, slider--menu
   const items2 = movieTheaterMovie[0].lstCumRap.map((theaterGroup, index) => ({
-    label:
-     (
+    label: (
       <div className="sider--items">
         <div className="sider--img">
           {" "}
@@ -48,11 +47,10 @@ const TheaterGroup = (props) => {
 
     key: index,
   }));
- 
 
   return (
     <Layout style={{ backgroundColor: "#fff" }}>
-      <Layout.Header  className="header__filter">
+      <Layout.Header className="header__filter">
         <div className="logo">
           <svg
             width={32}
@@ -76,7 +74,6 @@ const TheaterGroup = (props) => {
           </svg>
         </div>
         <Menu
-          
           className="menu--header"
           style={{ border: "none" }}
           onClick={(e) => {
@@ -97,16 +94,16 @@ const TheaterGroup = (props) => {
         }}
       >
         <Layout.Sider
-         
-         onBreakpoint={(borken)=>{
-          
-        }}  onCollapse={(collapsed, type) => {
-          
-          console.log(collapsed, type);
-        }} width={300} collapsedWidth='0' breakpoint="lg" className=" ant-layout-sider ant-layout-sider-light sider">
-          
-          <Menu 
-            
+          onBreakpoint={(borken) => {}}
+          onCollapse={(collapsed, type) => {
+            console.log(collapsed, type);
+          }}
+          width={300}
+          collapsedWidth="0"
+          breakpoint="lg"
+          className=" ant-layout-sider ant-layout-sider-light sider"
+        >
+          <Menu
             className="sider--menu"
             onClick={(e) => {
               setIndex(e.key);
@@ -130,8 +127,14 @@ const TheaterGroup = (props) => {
                 (movies) => {
                   if (movies.dangChieu) {
                     return (
-                      <Row  key={movies.maPhim} className="card">
-                        <Col span={8}  md={{span:6}} lg={{span:6}} xl={{span:8}} className="col--img">
+                      <Row key={movies.maPhim} className="card">
+                        <Col
+                          span={8}
+                          md={{ span: 6 }}
+                          lg={{ span: 6 }}
+                          xl={{ span: 8 }}
+                          className="col--img"
+                        >
                           <img
                             onClick={() => {
                               goToDetail(movies.maPhim);
@@ -140,16 +143,32 @@ const TheaterGroup = (props) => {
                             src={movies.hinhAnh}
                           />
                         </Col>
-                        <Col span={16} md={{span:18}} lg={{span:18}} xl={{span:16}}className="col--title">
+                        <Col
+                          span={16}
+                          md={{ span: 18 }}
+                          lg={{ span: 18 }}
+                          xl={{ span: 16 }}
+                          className="col--title"
+                        >
                           <div>
                             <h2>{movies.tenPhim}</h2>
                             <h3>Xuất Chiếu</h3>
                             <Row>
                               {movies.lstLichChieuTheoPhim.map((time) => {
                                 return (
-                                  <Col key={time.maLichChieu}  span={6} lg={{span:6}} md={{span:8}} xs={{span:12}} sm={{span:12}} style={{ width: "20%" }}>
-                                    <DateTheater time={time} goToBooking={goToBooking}/>
-                                  
+                                  <Col
+                                    key={time.maLichChieu}
+                                    span={6}
+                                    lg={{ span: 6 }}
+                                    md={{ span: 8 }}
+                                    xs={{ span: 12 }}
+                                    sm={{ span: 12 }}
+                                    style={{ width: "20%" }}
+                                  >
+                                    <DateTheater
+                                      time={time}
+                                      goToBooking={goToBooking}
+                                    />
                                   </Col>
                                 );
                               })}

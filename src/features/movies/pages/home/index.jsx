@@ -7,18 +7,17 @@ import "slick-carousel/slick/slick-theme.css";
 import NowShowingMovie from "./components/NowShowingMovie";
 import UpcomingMovie from "./components/UpcomingMovie";
 import Trailer from "./components/Trailer";
-import Test from "./components/filterMovies/components/theater-group/test";
+import Footer from "common/components/Footer";
 
 const Home = () => {
 	return (
 		<div>
-			{/* <Banner />
+			<Banner />
 			<NowShowingMovie />
 			<UpcomingMovie />
-			<Trailer /> */}
+			<Trailer />
 			<FilterMovies />
-			{/* <Test/> */}
-
+		
 			<div style={{ color: "#000" }}>Footer</div>
 		</div>
 	);

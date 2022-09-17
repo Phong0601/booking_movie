@@ -25,5 +25,8 @@
 
 // Detail  --by Hung
 @import "features/movies/pages/detail/detail";
-@import "features/movies/pages/detail/components/MovieDetail/movieDetail";
-@import 'features/movies/pages/home/components/filterMovies/components/theater-group/TheaterGroup'
+// @import "features/movies/pages/detail/components/MovieDetail/movieDetail";
+@import 'features/movies/pages/home/components/filterMovies/components/theater-group/TheaterGroup';
+@import "features/movies/pages/detail/components/MovieInfo/movieInfo";
+@import "features/movies/pages/detail/components/MovieSchedule/movieSchedule";
+@import "features/movies/pages/detail/components/MovieSchedule/TheaterInfo/theaterInfo";
