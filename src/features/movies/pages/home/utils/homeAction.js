@@ -44,26 +44,26 @@ export const fetchTheater = createAsyncThunk("home/fetchThearter", async () => {
 //         })
 //         return res.data.content
 //     } catch (error) {
-        
+
 //     }
 // })
 //LayThongTinLichChieuHeThongRap --by Phong
-export const fetchMoviesTheater = createAsyncThunk ('home/fetchMoviesTheater',
-async (idTheater)=>{
-    try {
-        const res = await instance.request({
-            url:'/api/QuanLyRap/LayThongTinLichChieuHeThongRap',
-            method:'GET',
-            params:{
-                maHeThongRap:idTheater,
-                maNhom:'GP03'
-            }
-        })
-        return res.data.content
-    } catch (error) {
-        
-    }
-})
+export const fetchMoviesTheater = createAsyncThunk(
+	"home/fetchMoviesTheater",
+	async (idTheater) => {
+		try {
+			const res = await instance.request({
+				url: "/api/QuanLyRap/LayThongTinLichChieuHeThongRap",
+				method: "GET",
+				params: {
+					maHeThongRap: idTheater,
+					maNhom: "GP03",
+				},
+			});
+			return res.data.content;
+		} catch (error) {}
+	}
+);
 export const fetchTheaterGroup = createAsyncThunk(
 	"home/fetchTheaterGroup",
 	async (idTheater) => {

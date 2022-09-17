@@ -7,6 +7,7 @@ import {
 import { Spin, Col, Divider, Row, Modal, Button } from "antd";
 import { NavLink } from "react-router-dom";
 import YouTube from "react-youtube";
+import { formatDate } from "common/utils/date";
 
 function MovieInfo(props) {
 	const {
@@ -68,23 +69,9 @@ function MovieInfo(props) {
 		}
 	};
 
-	// format date
-	const formatDate = (date) => {
-		const newDate = new Date();
-		const day = newDate.getDay();
-		const month = newDate.getMonth();
-		const year = newDate.getFullYear();
-
-		return `${formatNumber(day)}/${formatNumber(month)}/${year}`;
-	};
-
-	const formatNumber = (num) => {
-		if (num < 10) return `0${num}`;
-	};
-
 	return (
 		<div className="MovieInfo">
-			{console.log(props.selectedMovie)}
+			{/* {console.log(props.selectedMovie)} */}
 			<div className="breadcrumb">
 				<div className="container">
 					<Row>
