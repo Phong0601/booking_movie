@@ -5,6 +5,7 @@ import { Spin, Layout, Menu, Row, Col, Card, Button } from "antd";
 import "./TheaterGroup.scss";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import DateTheater from "../date-custom/DateTheater";
+import Test from "./test";
 const TheaterGroup = (props) => {
   const { Meta } = Card;
   const { movieTheaterMovie, theaterList, theaterGroupFetch } = props;
@@ -32,7 +33,8 @@ const TheaterGroup = (props) => {
   }));
   //setup Menu.Item ANTD recommended, slider--menu
   const items2 = movieTheaterMovie[0].lstCumRap.map((theaterGroup, index) => ({
-    label: (
+    label:
+     (
       <div className="sider--items">
         <div className="sider--img">
           {" "}
@@ -94,8 +96,17 @@ const TheaterGroup = (props) => {
           padding: "24px 0",
         }}
       >
-        <Layout.Sider width={300} collapsedWidth='0' breakpoint="sm" className=" ant-layout-sider ant-layout-sider-light sider">
+        <Layout.Sider
+         
+         onBreakpoint={(borken)=>{
+          
+        }}  onCollapse={(collapsed, type) => {
+          
+          console.log(collapsed, type);
+        }} width={300} collapsedWidth='0' breakpoint="lg" className=" ant-layout-sider ant-layout-sider-light sider">
+          
           <Menu 
+            
             className="sider--menu"
             onClick={(e) => {
               setIndex(e.key);
@@ -136,7 +147,7 @@ const TheaterGroup = (props) => {
                             <Row>
                               {movies.lstLichChieuTheoPhim.map((time) => {
                                 return (
-                                  <Col key={time.maLichChieu} span={6} lg={{span:6}} md={{span:8}} sm={{span:12}} style={{ width: "20%" }}>
+                                  <Col key={time.maLichChieu}  span={6} lg={{span:6}} md={{span:8}} xs={{span:12}} sm={{span:12}} style={{ width: "20%" }}>
                                     <DateTheater time={time} goToBooking={goToBooking}/>
                                   
                                   </Col>

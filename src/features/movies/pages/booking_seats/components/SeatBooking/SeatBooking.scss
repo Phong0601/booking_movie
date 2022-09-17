@@ -1,0 +1,47 @@
+.card__movies {
+  border: none;
+  .screen {
+    text-align: center;
+    height: 40px;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 40px solid orange;
+    filter: drop-shadow(4px 30px 20px grey);
+    font-size: 25px;
+    color: #fff;
+    margin: 0 auto;
+    font-weight: 900;
+    margin-bottom: 100px;
+  }
+  .seat__group {
+    padding: 0 10px;
+    width: 45rem;
+    height: 32rem;
+    margin: auto;
+
+    .btn--seat {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(2);
+      }
+    }
+  }
+}
+.seat--vip {
+  background-color: #a50064;
+}
+.seat--booked {
+  background-color: orange;
+  &:hover {
+    transform: none !important;
+    cursor: not-allowed !important;
+  }
+}
+.seat--selected{
+  background: blueviolet;
+}
