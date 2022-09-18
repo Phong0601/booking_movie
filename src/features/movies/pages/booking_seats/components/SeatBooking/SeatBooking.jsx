@@ -1,11 +1,14 @@
 import React, { useState, useRef } from "react";
 import { Card, Spin, Row, Col } from "antd";
 import "./SeatBooking.scss";
-const SeatBooking = ({ seatList, infoMovie }) => {
-  const [selected, setSelected] = useState(false);
+const SeatBooking = ({ seatList, selectSeat }) => {
+  console.log();
+  const checked = useRef([]);
+  const handleEvent = (value, index) => {
+    selectSeat(value);
 
-  const handleEvent = (value) => {
-    console.log(value);
+    const span = checked.current;
+    span[index].classList.toggle("seat--selected");
   };
 
   return (
@@ -17,7 +20,6 @@ const SeatBooking = ({ seatList, infoMovie }) => {
             const { tenGhe, maGhe, loaiGhe, daDat } = seat;
             let booked = "";
             let vip = "";
-            
 
             if (daDat) booked = "seat--booked";
             if (loaiGhe === "Vip") vip = "seat--vip";
@@ -25,10 +27,10 @@ const SeatBooking = ({ seatList, infoMovie }) => {
             return (
               <Col key={maGhe} span={2.4}>
                 <button
+                  ref={(e) => (checked.current[index] = e)}
                   value={maGhe}
                   onClick={(e) => {
-                    setSelected(!selected);
-                    handleEvent(e.target.value);
+                    handleEvent(e.target.value, index);
                   }}
                   className={`${booked} ${vip}  btn--seat`}
                   disabled={daDat}

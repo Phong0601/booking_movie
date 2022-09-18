@@ -1,9 +1,7 @@
 import React from "react";
 import { Card, Image } from "antd";
-const InfoBooking = ({ infoMovie }) => {
-  console.log(infoMovie);
-  const { hinhAnh, gioChieu, diaChi, ngayChieu, tenPhim } =
-    infoMovie;
+const InfoBooking = ({ infoMovie, seatSelected }) => {
+  const { hinhAnh, gioChieu, diaChi, ngayChieu, tenPhim } = infoMovie;
   return (
     <Card title={tenPhim}>
       <div>
@@ -17,7 +15,16 @@ const InfoBooking = ({ infoMovie }) => {
           </h3>
         </div>
         <div className="seat__selected">
-          Ghế Chọn:
+          <div>
+            Ghế Chọn:
+            {seatSelected.map((seat) => {
+              return (
+                <h3 key={seat.maGhe} style={{ display: "inline" }}>
+                  {seat.tenGhe},
+                </h3>
+              );
+            })}
+          </div>
         </div>
       </div>
     </Card>
