@@ -1,17 +1,22 @@
 import { Rate } from "antd";
 import { formatDateString } from "common/utils/dateString";
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Slider from "react-slick";
 import "./_movieListColumn.scss";
 
 function MovieListColumn(props) {
 	const movieList = props.movieList;
+	const history = useHistory();
+	const goToDetail = (movieId, slug) => {
+		history.push("/detail/" + movieId + "/" + slug);
+	};
 	//Setting Slick
 	const settings = {
 		dots: false,
 		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 3,
+		slidesToShow: 5,
+		slidesToScroll: 5,
 		vertical: true,
 		verticalSwiping: true,
 	};
@@ -23,15 +28,24 @@ function MovieListColumn(props) {
 		return;
 	};
 
+	const showingMovie = movieList.filter((item) => {
+		return item.dangChieu === true;
+	});
+
 	return (
 		<div className="MovieListColumn">
 			<h2>Phim đang chiếu</h2>
 			<Slider {...settings}>
-				{movieList?.map((item) => {
+				{showingMovie?.map((item) => {
 					return (
 						<div key={item.maPhim} className="movie-slider">
 							<div className="content">
-								<div className="left">
+								<div
+									className="left"
+									onClick={() =>
+										goToDetail(item.maPhim, item.biDanh)
+									}
+								>
 									<img src={item.hinhAnh} alt="" />
 								</div>
 								<div className="right">

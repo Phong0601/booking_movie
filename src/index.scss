@@ -25,8 +25,14 @@
 
 // Detail  --by Hung
 @import "features/movies/pages/detail/detail";
-// @import "features/movies/pages/detail/components/MovieDetail/movieDetail";
-@import 'features/movies/pages/home/components/filterMovies/components/theater-group/TheaterGroup';
 @import "features/movies/pages/detail/components/MovieInfo/movieInfo";
-@import "features/movies/pages/detail/components/MovieSchedule/movieSchedule";
-@import "features/movies/pages/detail/components/MovieSchedule/TheaterInfo/theaterInfo";
+@import "features/movies/pages/detail/components/MovieBody/components/MovieSchedule/movieSchedule";
+@import "features/movies/pages/detail/components/MovieBody/components/MovieSchedule/TheaterInfo/theaterInfo";
+// Detail -> MovieBody -> RateStar
+@import "features/movies/pages/detail/components/MovieBody/components/RateStar/rateStar";
+// SignUp  -- by Hung
+@import "features/authentication/SignUp/signUp";
+@import "features/authentication/SignIn/signIn";
+
+///////
+@import "features/movies/pages/home/components/filterMovies/components/theater-group/TheaterGroup";

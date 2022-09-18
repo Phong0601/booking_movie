@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useRouteMatch } from "react-router-dom";
-import MovieInfo from "./components/MovieInfo";
-import MovieSchedule from "./components/MovieSchedule";
+import MovieBody from "./components/MovieBody";
+
 import {
 	fetchTheaterAction,
 	fetchSelectedMovieAction,
@@ -57,7 +57,7 @@ const Detail = () => {
 		fetchTheater();
 		fetchSchedule();
 		fetchMovieListColumn();
-	}, [theaterGroup]);
+	}, [theaterGroup, movieId]);
 
 	if (!selectedMovie) {
 		return (
@@ -93,8 +93,8 @@ const Detail = () => {
 
 	return (
 		<div className="Detail">
-			<MovieInfo selectedMovie={selectedMovie} />
-			<MovieSchedule
+			{/* <MovieInfo selectedMovie={selectedMovie} /> */}
+			<MovieBody
 				selectedMovie={selectedMovie}
 				theater={theater}
 				schedule={schedule}

@@ -6,12 +6,21 @@ import {
 	HomeOutlined,
 } from "@ant-design/icons";
 import instance from "api/instance";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Header = () => {
 	const [current, setCurrent] = useState("");
 
+	// go to Sign In --by Hung
+	const history = useHistory();
+	const goToSignIn = () => {
+		history.push("/signin");
+	};
+
 	const onClick = (e) => {
-		console.log("click ", e);
+		// console.log("click ", e);
 		setCurrent(e.key);
+		// Add by Hung
+		goToSignIn();
 	};
 
 	const items = [
@@ -78,7 +87,10 @@ const Header = () => {
 		},
 	];
 	return (
-		<Layout className="Header" style={{ display: "block",backgroundColor:'#fff' }}>
+		<Layout
+			className="Header"
+			style={{ display: "block", backgroundColor: "#fff" }}
+		>
 			<div className="container">
 				<Layout.Header className="navbar">
 					<div className="left">
