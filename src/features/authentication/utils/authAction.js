@@ -9,6 +9,7 @@ export const signUpAction = createAsyncThunk("auth/signUp", async (user) => {
 			method: "POST",
 			data: user,
 		});
+		return res.data.content;
 	} catch (err) {
 		console.log(err);
 	}
@@ -22,8 +23,6 @@ export const signInAction = createAsyncThunk("auth/signIn", async (user) => {
 			method: "POST",
 			data: user,
 		});
-		console.log(res.data);
-	} catch (err) {
-		console.log(err);
-	}
+		return res.data.content;
+	} catch (err) {}
 });

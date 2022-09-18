@@ -27,7 +27,7 @@
 
 		.title {
 			text-align: center;
-			font-size: 40px;
+			font-size: 30px;
 			font-weight: 300;
 			color: black;
 		}
@@ -46,6 +46,16 @@
 				border-radius: 10px;
 			}
 
+			.term {
+				width: 100%;
+				padding: 5px 0;
+				display: flex;
+				flex-wrap: wrap;
+				span {
+					cursor: pointer;
+				}
+			}
+
 			.btn-submit {
 				width: 100%;
 				margin: 10px auto;
@@ -60,6 +70,17 @@
 			.errorText {
 				padding: 5px 0;
 				color: red;
+			}
+		}
+
+		.signin-tips {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+
+			.btn-signin {
+				border-radius: 20px;
 			}
 		}
 	}

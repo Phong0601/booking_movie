@@ -22,11 +22,11 @@ function MovieBody(props) {
 			<div className="container">
 				<Row>
 					<Col xs={24} sm={24} md={24} lg={18} xl={18}>
-						{/* <MovieSchedule
+						<MovieSchedule
 							selectedMovie={selectedMovie}
 							theaterList={theaterList}
 							schedule={schedule}
-						/> */}
+						/>
 						<UserComment />
 					</Col>
 					<Col xs={24} sm={24} md={24} lg={6} xl={6}>

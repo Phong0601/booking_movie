@@ -6,7 +6,7 @@ import {
 	ToolOutlined,
 	UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import { Button, Checkbox, Form, Input, Modal } from "antd";
 import instance from "api/instance";
 import { useFormik } from "formik";
 import React from "react";
@@ -21,7 +21,7 @@ const schema = yup.object({
 	matKhau: yup
 		.string()
 		.required("*Trường này bắt buộc nhập !")
-		.min(8, "*Mật khẩu phải từ 8 đến 16 kí tự"),
+		.min(6, "*Mật khẩu phải từ 6 đến 14 kí tự"),
 	hoTen: yup
 		.string()
 		.required("*Trường này bắt buộc nhập !")
@@ -30,7 +30,13 @@ const schema = yup.object({
 		.string()
 		.required("*Trường này bắt buộc nhập !")
 		.email("*Email không đúng định dạng"),
-	soDt: yup.string().required("*Trường này bắt buộc nhập !"),
+	soDt: yup
+		.number()
+		.typeError("*Số điện thoại không đúng !")
+		.positive("*Số điện thoại không bắt đầu bằng dấu trừ (-) !")
+		.integer("*Số điện thoại không được dùng số thập phân !")
+		.min(8, "*Số điện thoại phải lớn hơn 8 kí tự !")
+		.required("*Trường này bắt buộc nhập !"),
 });
 
 function SignUp() {
@@ -39,6 +45,15 @@ function SignUp() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
+	//go to signIn
+	const goToSignIn = () => {
+		history.push("/signin");
+	};
+
+	// Setting modal
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	// Validation Form
 	const formik = useFormik({
 		initialValues: {
 			taiKhoan: "",
@@ -54,8 +69,35 @@ function SignUp() {
 		validationSchema: schema,
 	});
 
-	const signUp = (user) => {
-		dispatch(signUpAction(user));
+	const signUp = async (user) => {
+		setIsLoading(true); // show icon loading
+		const data = await dispatch(signUpAction(user));
+
+		if (!data.payload) {
+			setIsLoading(false);
+			return alert(
+				"Tài khoản hoặc email đã tồn tại, vui lòng nhập lại !"
+			);
+		} else {
+			setIsLoading(false);
+			alert("Đăng kí thành công !");
+			history.push("/signin");
+		}
+		setIsLoading(false);
+	};
+
+	// Setting modal
+
+	const showModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const handleOk = () => {
+		setIsModalOpen(false);
+	};
+
+	const handleCancel = () => {
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -136,14 +178,46 @@ function SignUp() {
 							<p className="errorText">{formik.errors.soDt}</p>
 						)}
 
+						<div className="term">
+							<Checkbox>Chấp nhận các điều khoản</Checkbox>
+							<span
+								onClick={showModal}
+								style={{ color: "blue", marginLeft: 20 }}
+							>
+								Điều khoản
+							</span>
+							<Modal
+								title="Basic Modal"
+								open={isModalOpen}
+								onOk={handleOk}
+								onCancel={handleCancel}
+							>
+								<p>Some contents...</p>
+								<p>Some contents...</p>
+								<p>Some contents...</p>
+							</Modal>
+						</div>
+
 						<Button
 							htmlType="submit"
 							type="primary"
 							className="btn-submit"
+							loading={isLoading}
 						>
 							Sign Up
 						</Button>
 					</form>
+
+					<div className="signin-tips">
+						<p>You have a account ?</p>
+						<Button
+							type="primary"
+							className="btn-signin"
+							onClick={goToSignIn}
+						>
+							Sign In
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>

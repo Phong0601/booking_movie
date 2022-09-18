@@ -1,4 +1,5 @@
-import { Button, Input } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Input } from "antd";
 import { useFormik } from "formik";
 import React from "react";
 import { useState } from "react";
@@ -28,20 +29,29 @@ function SignIn() {
 		},
 		onSubmit: (values) => {
 			signIn(values);
-			history.push("/");
 		},
-
 		validationSchema: schema,
 	});
 
-	const signIn = (user) => {
-		dispatch(signInAction(user));
+	const signIn = async (user) => {
+		const data = await dispatch(signInAction(user));
+		if (!data.payload) {
+			return alert("Sai tài khoản hoặc mật khẩu, vui lòng nhập lại !");
+		} else {
+			alert("Đăng nhập thành công !");
+			history.push("/");
+		}
 	};
 
 	return (
-		<div className="SignIn">
+		<div
+			className="SignIn"
+			style={{ backgroundImage: "url(/bg/bgSignin.jpg)" }}
+		>
 			<div className="content-signin">
 				<h2 className="title">Sign In</h2>
+				<UserOutlined className="icon-user" />
+
 				<form onSubmit={formik.handleSubmit} className="form">
 					<Input
 						name="taiKhoan"
@@ -50,6 +60,7 @@ function SignIn() {
 						className="input"
 						type="text"
 						placeholder="Username"
+						prefix={<UserOutlined style={{ marginRight: 8 }} />}
 					/>
 
 					{formik.touched.taiKhoan && formik.errors.taiKhoan && (
@@ -63,20 +74,36 @@ function SignIn() {
 						className="input"
 						type="text"
 						placeholder="Password"
+						prefix={<LockOutlined style={{ marginRight: 8 }} />}
 					/>
 					{formik.touched.matKhau && formik.errors.matKhau && (
 						<p className="errorText">{formik.errors.matKhau}</p>
 					)}
+
+					<div className="remember">
+						<Checkbox>Remember me</Checkbox>
+						<span className="forgot-password">
+							Forgot password ?
+						</span>
+					</div>
+
 					<Button
+						className="btn-signin"
 						htmlType="submit"
 						type="primary"
 						loading={isLoading}
 					>
-						Submit
+						Sign In
 					</Button>
 				</form>
+
+				<div className="signup-tips">
+					<p>Not a member ?</p>
+					<div className="btn-signup" onClick={goToSignUp}>
+						Create account
+					</div>
+				</div>
 			</div>
-			<button onClick={goToSignUp}>Sign Up</button>
 		</div>
 	);
 }

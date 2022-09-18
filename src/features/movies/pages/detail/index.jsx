@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useRouteMatch } from "react-router-dom";
 import MovieBody from "./components/MovieBody";
+import MovieInfo from "./components/MovieInfo";
 
 import {
 	fetchTheaterAction,
@@ -93,7 +94,7 @@ const Detail = () => {
 
 	return (
 		<div className="Detail">
-			{/* <MovieInfo selectedMovie={selectedMovie} /> */}
+			<MovieInfo selectedMovie={selectedMovie} />
 			<MovieBody
 				selectedMovie={selectedMovie}
 				theater={theater}
