@@ -16,7 +16,7 @@ const Home = () => {
 			<NowShowingMovie />
 			{/* <UpcomingMovie /> */}
 			{/* <Trailer /> */}
-			{/* <FilterMovies /> */}
+			<FilterMovies />
 
 			<div style={{ color: "#000" }}>Footer</div>
 		</div>

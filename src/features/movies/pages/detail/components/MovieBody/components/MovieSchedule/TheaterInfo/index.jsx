@@ -7,79 +7,83 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./_theaterInfo.scss";
 
 function TheaterInfo(props) {
-	const { tenCumRap, diaChi, hinhAnh, lichChieuPhim } = props.theaterInfo;
-	const movieInfo = props.selectedMovie;
+  const { tenCumRap, diaChi, hinhAnh, lichChieuPhim } = props.theaterInfo;
+  const movieInfo = props.selectedMovie;
 
-	// go to booking
-	const history = useHistory();
-	const goToBooking = (idPremiere) => {
-		history.push("/booking/" + idPremiere);
-	};
+  // go to booking
+  const history = useHistory();
+  const goToBooking = (idPremiere) => {
+    const login = localStorage.getItem("login");
 
-	// Format price
-	const formatPrice = (price) => {
-		let newPrice = new Intl.NumberFormat("it-IT", {
-			style: "currency",
-			currency: "VND",
-		}).format(price);
-		return newPrice;
-	};
+    if (login === "true") history.push("/booking/" + idPremiere);
 
-	const time = lichChieuPhim.map((item) => {
-		return (
-			<div key={item.maLichChieu} className="schedule-content">
-				<DateTheater time={item} goToBooking={goToBooking} />
-				<div className="price">{formatPrice(item.giaVe)}</div>
-			</div>
-		);
-	});
+    if (login !== "true") history.push("/signin");
+  };
 
-	// Setting modal for Google Map
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const showModal = () => {
-		setIsModalOpen(true);
-	};
-	const handleOk = () => {
-		setIsModalOpen(false);
-	};
-	const handleCancel = () => {
-		setIsModalOpen(false);
-	};
+  // Format price
+  const formatPrice = (price) => {
+    let newPrice = new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+    return newPrice;
+  };
 
-	return (
-		<div className="TheaterInfo">
-			<div className="body-info">
-				<div className="left">
-					<div className="movie-img">
-						<img src={movieInfo.hinhAnh} alt="" />
-					</div>
-					<div className="show-time">
-						<p>Khởi chiếu</p>
-						<h3>{formatDateString(movieInfo.ngayKhoiChieu)}</h3>
-					</div>
-				</div>
-				<div className="right">{time}</div>
-			</div>
-			<div className="bottom-info">
-				<div className="logo">
-					<img src={hinhAnh} alt="" />
-				</div>
-				<div className="address">
-					<div>{tenCumRap}</div>
-					<p className="info">{diaChi}</p>
-					<p className="link-google" onClick={showModal}>
-						Xem bản đồ
-					</p>
+  const time = lichChieuPhim.map((item) => {
+    return (
+      <div key={item.maLichChieu} className="schedule-content">
+        <DateTheater time={item} goToBooking={goToBooking} />
+        <div className="price">{formatPrice(item.giaVe)}</div>
+      </div>
+    );
+  });
 
-					<Modal
-						title={diaChi}
-						open={isModalOpen}
-						onOk={handleOk}
-						onCancel={handleCancel}
-					>
-						<div>
-							Đang có lỗi !!!
-							{/* <iframe
+  // Setting modal for Google Map
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="TheaterInfo">
+      <div className="body-info">
+        <div className="left">
+          <div className="movie-img">
+            <img src={movieInfo.hinhAnh} alt="" />
+          </div>
+          <div className="show-time">
+            <p>Khởi chiếu</p>
+            <h3>{formatDateString(movieInfo.ngayKhoiChieu)}</h3>
+          </div>
+        </div>
+        <div className="right">{time}</div>
+      </div>
+      <div className="bottom-info">
+        <div className="logo">
+          <img src={hinhAnh} alt="" />
+        </div>
+        <div className="address">
+          <div>{tenCumRap}</div>
+          <p className="info">{diaChi}</p>
+          <p className="link-google" onClick={showModal}>
+            Xem bản đồ
+          </p>
+
+          <Modal
+            title={diaChi}
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <div>
+              Đang có lỗi !!!
+              {/* <iframe
 								src=""
 								width="600"
 								height="450"
@@ -87,12 +91,12 @@ function TheaterInfo(props) {
 								loading="lazy"
 								referrerpolicy="no-referrer-when-downgrade"
 							></iframe> */}
-						</div>
-					</Modal>
-				</div>
-			</div>
-		</div>
-	);
+            </div>
+          </Modal>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default TheaterInfo;
