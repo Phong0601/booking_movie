@@ -1,7 +1,25 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchProfileAction, signInAction } from "./authAction";
 
 const initialState = {
-	auth: null,
+	profile: null,
 };
 
-export const authSlice = createAsyncThunk("auth/signIn");
+const authSlice = createSlice({
+	name: "auth",
+	initialState: initialState,
+	reducers: {},
+
+	extraReducers(builder) {
+		//
+		builder.addCase(signInAction.fulfilled, (state, action) => {
+			state.profile = action.payload;
+		});
+
+		builder.addCase(fetchProfileAction.fulfilled, (state, action) => {
+			state.profile = action.payload;
+		});
+	},
+});
+
+export default authSlice;

@@ -1,13 +1,15 @@
 import { Col, Row } from "antd";
 import useLocalStorage from "common/hooks/useLocalStorage";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import MovieListColumn from "./components/MovieListColumn";
 import MovieSchedule from "./components/MovieSchedule";
 import RateStar from "./components/RateStar";
 import UserComment from "./components/UserComment";
 
 function MovieBody(props) {
-	// Selected Movie
+	// Selected Movie;
 	const selectedMovie = props.selectedMovie;
 	// Array (Theater Group)
 	const theaterList = props.theater;
@@ -18,7 +20,7 @@ function MovieBody(props) {
 
 	return (
 		<div className="MovieBody">
-			{/* {console.log(movieList)} */}
+			{/* {console.log(selectedMovie)} */}
 			<div className="container">
 				<Row>
 					<Col xs={24} sm={24} md={24} lg={18} xl={18}>

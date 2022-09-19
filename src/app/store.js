@@ -3,6 +3,7 @@ import bookingSlice from "features/movies/pages/booking_seats/utils/bookingSlice
 import detailSlice from "features/movies/pages/detail/utils/detailSlice";
 import bannerSlice from "features/movies/pages/home/components/Banner/utils/bannerSlice";
 import homeSlice from "features/movies/pages/home/utils/homeSlice";
+import authSlice from "features/authentication/utils/authSlice";
 
 const store = configureStore({
 	reducer: {
@@ -12,6 +13,8 @@ const store = configureStore({
 
 		movieDetail: detailSlice.reducer,
 		movieBooking: bookingSlice.reducer,
+		// Auth --by Hung
+		auth: authSlice.reducer,
 	},
 });
 export default store;

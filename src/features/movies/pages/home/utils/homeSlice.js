@@ -20,6 +20,7 @@ const homeSlice = createSlice({
 			state.movieList = action.payload;
 		});
 
+		// -- by Phong
 		builder.addCase(fetchTheater.fulfilled, (state, action) => {
 			state.theaterList = action.payload;
 		});

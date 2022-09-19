@@ -61,7 +61,7 @@ function MovieListColumn(props) {
 											className="rate-icon"
 											style={{ fontSize: 12 }}
 											allowHalf
-											defaultValue={item.danhGia}
+											defaultValue={item.danhGia / 2}
 										/>
 									</div>
 								</div>

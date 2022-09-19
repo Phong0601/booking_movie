@@ -5,9 +5,19 @@ import Detail from "features/movies/pages/detail";
 import Payment from "features/movies/pages/payment";
 import Booking from "features/movies/pages/booking_seats";
 import Header from "common/components/Header";
-// import SignIn from "features/authentication/SignIn";
-// import SignUp from "features/authentication/SignUp";
+import SignIn from "features/authentication/SignIn";
+import SignUp from "features/authentication/SignUp";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchProfileAction } from "features/authentication/utils/authAction";
+
 function App() {
+	// maintain my account --by Hung
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchProfileAction());
+	}, []);
+
 	return (
 		<div>
 			<Router>
@@ -17,8 +27,8 @@ function App() {
 					<Route path="/detail/:id/:slug" component={Detail} />
 					<Route path="/booking/:id" component={Booking} />
 					<Route path="/payment" component={Payment} />
-					{/* <Route path="/signin" component={SignIn} />
-					<Route path="/signup" component={SignUp} /> */}
+					<Route path="/signin" component={SignIn} />
+					<Route path="/signup" component={SignUp} />
 				</Switch>
 			</Router>
 		</div>

@@ -6,7 +6,9 @@ import {
 	HomeOutlined,
 } from "@ant-design/icons";
 import instance from "api/instance";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 const Header = () => {
 	const [current, setCurrent] = useState("");
 
@@ -14,6 +16,9 @@ const Header = () => {
 	const history = useHistory();
 	const goToSignIn = () => {
 		history.push("/signin");
+	};
+	const goToHome = () => {
+		history.push("/");
 	};
 
 	const onClick = (e) => {
@@ -86,6 +91,19 @@ const Header = () => {
 			],
 		},
 	];
+
+	// Setting Profile
+	const userProfile = useSelector((state) => state.auth.profile);
+	const renderUserInfo = () => {
+		if (userProfile) {
+			return (
+				<>
+					<NavLink to={"signin"}>Hi, {userProfile.hoTen}</NavLink>
+				</>
+			);
+		}
+	};
+
 	return (
 		<Layout
 			className="Header"
@@ -117,7 +135,7 @@ const Header = () => {
 								</g>
 							</svg>
 
-							<p>
+							<p onClick={goToHome} style={{ cursor: "pointer" }}>
 								Đặt Vé <br /> Xem Phim
 							</p>
 						</div>
@@ -130,6 +148,8 @@ const Header = () => {
 						items={items}
 					/>
 				</Layout.Header>
+
+				{renderUserInfo()}
 			</div>
 		</Layout>
 	);

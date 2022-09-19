@@ -1,5 +1,6 @@
 import { Button, Modal, Rate } from "antd";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 function RateStar(props) {
@@ -17,8 +18,11 @@ function RateStar(props) {
 		setIsModalOpen(false);
 	};
 
+	// re-render Star when change movie
+
 	return (
 		<div className="RateStar">
+			{/* {console.log(selectedMovie)} */}
 			<div className="movie-rate">
 				<div className="title">Xếp loại</div>
 				<Rate allowHalf defaultValue={selectedMovie.danhGia / 2} />
