@@ -31,6 +31,7 @@ const Header = () => {
 		if (window.confirm("Bạn có muốn đăng xuất ?")) {
 			// 1) Remove token localStorage
 			localStorage.removeItem("token");
+			localStorage.removeItem("login");
 			// 2) Set profile Store --> null
 			dispatch(fetchProfileAction({ payload: null }));
 		} else {

@@ -60,7 +60,7 @@ const Booking = () => {
         data: ticket,
       });
       setLoadding(false);
-      goToHome()
+      goToHome();
       // fetchSeatBooking(matchIdTheater.params.id);
     } catch (error) {}
   };
@@ -83,7 +83,6 @@ const Booking = () => {
     if (seatSelected.length > 0) {
       postBookedTicked(ticket);
       setSeatSelected([]);
-
     }
   };
 
@@ -91,10 +90,17 @@ const Booking = () => {
     <div className="booking">
       <div className="container">
         <Row>
-          <Col span={18}>
+          <Col
+            style={{ marginBottom: "200px" }}
+            span={18}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            md={{ span: 18 }}
+          >
             <div className="container__seat">
               {data ? (
                 <SeatBooking
+                  seatSelected={seatSelected}
                   infoMovie={data.thongTinPhim}
                   selectSeat={selectSeat}
                   seatList={data.danhSachGhe}
@@ -104,7 +110,7 @@ const Booking = () => {
               )}
             </div>
           </Col>
-          <Col span={6}>
+          <Col span={6} sm={{ span: 24 }} xs={{ span: 24 }} md={{ span: 6 }}>
             <div className="container__info">
               {data ? (
                 <InfoBooking

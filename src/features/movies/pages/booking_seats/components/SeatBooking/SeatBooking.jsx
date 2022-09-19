@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
-import { Card, Spin, Row, Col } from "antd";
+import { Card, Spin, Row, Col,Button } from "antd";
+import sortBy from "lodash.sortby";
 import "./SeatBooking.scss";
 console.log();
-const SeatBooking = ({ seatList, infoMovie, selectSeat }) => {
+const SeatBooking = ({ seatList, infoMovie, selectSeat, seatSelected }) => {
   console.log(infoMovie);
   const checked = useRef([]);
   const handleEvent = (value, index) => {
@@ -15,11 +16,42 @@ const SeatBooking = ({ seatList, infoMovie, selectSeat }) => {
   return (
     <Card
       className="card__movies"
-      title={infoMovie.tenCumRap}
+      title={`Rạp: ${infoMovie.tenCumRap} <> Phim: ${infoMovie.tenPhim}`}
       headStyle={{ backgroundColor: "orange" }}
       bodyStyle={{ border: "4px solid orange", height: "100%" }}
     >
       <div className="screen">Screen</div>
+      <div className="reponsive">
+        <div>
+          <h3 style={{ display: "inline-block" }}> Ghế Chọn:</h3>
+          {sortBy(seatSelected, ["stt"]).map((seat) => {
+            return (
+              <h3 key={seat.maGhe} style={{ display: "inline-block" }}>
+                {seat.tenGhe},
+              </h3>
+            );
+          })}
+        </div>
+        <div>
+          <h3 style={{ display: "inline-block" }}>Tổng Tiền:</h3>
+          <h2 style={{ display: "inline-block" }}>
+            {seatSelected
+              .reduce((total, seat, index) => {
+                return (total += seat.giaVe);
+              }, 0)
+              .toLocaleString()}
+          </h2>
+        </div>
+        <Button
+          style={{ borderRadius: "10px" }}
+          onClick={handleBooked}
+          className="btn-payment"
+          type="primary"
+          ghost
+        >
+          Thanh Toán
+        </Button>
+      </div>
       <div className="seat__group">
         <Row gutter={[8, 8]}>
           {seatList.map((seat, index) => {
