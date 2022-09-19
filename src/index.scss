@@ -34,5 +34,8 @@
 @import "features/authentication/SignUp/signUp";
 @import "features/authentication/SignIn/signIn";
 
+// Footer
+@import "common/components/Footer/footer";
+
 ///////
 @import "features/movies/pages/home/components/filterMovies/components/theater-group/TheaterGroup";

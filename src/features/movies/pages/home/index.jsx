@@ -17,8 +17,6 @@ const Home = () => {
 			<UpcomingMovie />
 			<Trailer /> */}
 			<FilterMovies />
-
-			<div style={{ color: "#000" }}>Footer</div>
 		</div>
 	);
 };
