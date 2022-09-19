@@ -15,7 +15,7 @@ import Footer from "common/components/Footer";
 
 function App() {
 	// maintain my account --by Hung
-	const dispatch = useDispatch();
+	const dispatch = useDispatch();	
 	useEffect(() => {
 		dispatch(fetchProfileAction());
 	}, []);

@@ -30,6 +30,7 @@ export const signInAction = createAsyncThunk("auth/signIn", async (user) => {
 		delete profile.accessToken;
 		// 3) Lưu token xuống localStorage để tái sử dụng
 		localStorage.setItem("token", res.data.content.accessToken);
+		localStorage.setItem("login", true);
 
 		return profile;
 	} catch (err) {}
