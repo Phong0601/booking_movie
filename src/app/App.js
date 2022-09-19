@@ -10,6 +10,8 @@ import SignUp from "features/authentication/SignUp";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProfileAction } from "features/authentication/utils/authAction";
+import Profile from "features/authentication/Profile";
+import Footer from "common/components/Footer";
 
 function App() {
 	// maintain my account --by Hung
@@ -29,7 +31,9 @@ function App() {
 					<Route path="/payment" component={Payment} />
 					<Route path="/signin" component={SignIn} />
 					<Route path="/signup" component={SignUp} />
+					<Route path="/profile" component={Profile} />
 				</Switch>
+				<Footer />
 			</Router>
 		</div>
 	);

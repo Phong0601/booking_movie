@@ -8,24 +8,50 @@ import {
 import instance from "api/instance";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchProfileAction } from "features/authentication/utils/authAction";
 
 const Header = () => {
 	const [current, setCurrent] = useState("");
+	const dispatch = useDispatch();
 
 	// go to Sign In --by Hung
 	const history = useHistory();
 	const goToSignIn = () => {
 		history.push("/signin");
 	};
+	const goToProfile = () => {
+		history.push("/profile");
+	};
 	const goToHome = () => {
 		history.push("/");
 	};
 
+	// Logout
+	const logout = () => {
+		if (window.confirm("Bạn có muốn đăng xuất ?")) {
+			// 1) Remove token localStorage
+			localStorage.removeItem("token");
+			// 2) Set profile Store --> null
+			dispatch(fetchProfileAction({ payload: null }));
+		} else {
+			return;
+		}
+	};
+
 	const onClick = (e) => {
-		// console.log("click ", e);
+		// console.log(e);
 		setCurrent(e.key);
 		// Add by Hung
-		goToSignIn();
+		if (e.key === "5") {
+			goToSignIn();
+		}
+		if (e.key === "profile-1") {
+			goToProfile();
+		}
+		if (e.key === "6") {
+			logout();
+			goToHome("/");
+		}
 	};
 
 	const items = [
@@ -84,23 +110,42 @@ const Header = () => {
 					label: "Đăng Nhập",
 					key: "5",
 				},
-				{
-					label: "Đăng Xuất",
-					key: "6",
-				},
 			],
 		},
 	];
+
+	//format Ho Ten
+	const formatName = (name) => {
+		let newName = name.trim();
+		for (let i = newName.length; i > 0; i--) {
+			if (newName[i] === " ") {
+				return newName.slice(i + 1, newName.length);
+			}
+		}
+		return newName;
+	};
+
+	// toUpperCase Name
+	function upperCaseFirst(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 
 	// Setting Profile
 	const userProfile = useSelector((state) => state.auth.profile);
 	const renderUserInfo = () => {
 		if (userProfile) {
-			return (
-				<>
-					<NavLink to={"signin"}>Hi, {userProfile.hoTen}</NavLink>
-				</>
-			);
+			items[2].label = `Hi,  ${upperCaseFirst(
+				formatName(userProfile.hoTen)
+			)}`;
+			items[2].children[0] = {
+				label: "Thông tin cá nhân",
+				key: "profile-1",
+			};
+
+			items[2].children[1] = {
+				label: "Đăng Xuất",
+				key: "6",
+			};
 		}
 	};
 
@@ -147,9 +192,8 @@ const Header = () => {
 						className="right"
 						items={items}
 					/>
+					{renderUserInfo()}
 				</Layout.Header>
-
-				{renderUserInfo()}
 			</div>
 		</Layout>
 	);

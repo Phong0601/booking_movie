@@ -35,7 +35,7 @@ export const signInAction = createAsyncThunk("auth/signIn", async (user) => {
 	} catch (err) {}
 });
 
-// Profile
+// Profile - get info
 export const fetchProfileAction = createAsyncThunk(
 	"auth/fetchProfile",
 	async () => {
@@ -46,8 +46,23 @@ export const fetchProfileAction = createAsyncThunk(
 			});
 			// console.log(res.data.content);
 			return res.data.content;
+		} catch (err) {}
+	}
+);
+
+// Update Profile
+export const updateProfileAction = createAsyncThunk(
+	"auth/updateProfile",
+	async () => {
+		try {
+			const res = await instance.request({
+				url: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+				method: "POST",
+			});
+			console.log(res.data.content);
+			return res.data.content;
 		} catch (err) {
-			console.log(err);
+			console.log("Khong thanh cong !");
 		}
 	}
 );
