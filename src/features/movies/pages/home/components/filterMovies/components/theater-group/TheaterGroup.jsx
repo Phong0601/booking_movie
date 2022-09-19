@@ -21,10 +21,10 @@ const TheaterGroup = (props) => {
   //Go Pages Details with idPremiere --by Phong
   const goToBooking = (idPremiere) => {
     const login = localStorage.getItem("login");
+    history.push("/booking/" + idPremiere);
+    // if (login === "true") history.push("/booking/" + idPremiere);
 
-    if (login === "true") history.push("/booking/" + idPremiere);
-
-    if(login !== 'true') history.push("/signin");
+    // if(login !== 'true') history.push("/signin");
   };
   //setup Menu.Item ANTD recommended, header--menu
   const items1 = theaterList.map((theater) => ({

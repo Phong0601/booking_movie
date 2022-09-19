@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import { Card, Spin, Row, Col } from "antd";
 import "./SeatBooking.scss";
-const SeatBooking = ({ seatList, selectSeat }) => {
-  console.log();
+console.log();
+const SeatBooking = ({ seatList, infoMovie, selectSeat }) => {
+  console.log(infoMovie);
   const checked = useRef([]);
   const handleEvent = (value, index) => {
     selectSeat(value);
@@ -12,7 +13,12 @@ const SeatBooking = ({ seatList, selectSeat }) => {
   };
 
   return (
-    <Card className="card__movies" title="101 chú chó đóm">
+    <Card
+      className="card__movies"
+      title={infoMovie.tenCumRap}
+      headStyle={{ backgroundColor: "orange" }}
+      bodyStyle={{ border: "4px solid orange", height: "100%" }}
+    >
       <div className="screen">Screen</div>
       <div className="seat__group">
         <Row gutter={[8, 8]}>
@@ -41,6 +47,26 @@ const SeatBooking = ({ seatList, selectSeat }) => {
             );
           })}
         </Row>
+        <div className="note__seat">
+          <Row>
+            <Col span={6}>
+              <button className="btn--seat"></button>
+              <h4>Ghế Trống</h4>
+            </Col>
+            <Col span={6}>
+              <button className="btn--seat seat--vip"></button>
+              <h4>Ghế Vip</h4>
+            </Col>
+            <Col span={6}>
+              <button className="btn--seat seat--selected"></button>
+              <h4>Ghế Chọn</h4>
+            </Col>
+            <Col span={6}>
+              <button className="btn--seat seat--booked"></button>
+              <h4>Ghế Đã Đặt</h4>
+            </Col>
+          </Row>
+        </div>
       </div>
     </Card>
   );

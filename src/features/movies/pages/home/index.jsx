@@ -12,10 +12,10 @@ import Footer from "common/components/Footer";
 const Home = () => {
 	return (
 		<div>
-			{/* <Banner /> */}
+			{/* <Banner />
 			<NowShowingMovie />
-			{/* <UpcomingMovie /> */}
-			{/* <Trailer /> */}
+			<UpcomingMovie />
+			<Trailer /> */}
 			<FilterMovies />
 
 			<div style={{ color: "#000" }}>Footer</div>

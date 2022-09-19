@@ -24,7 +24,7 @@ const FilterMovies = () => {
     theaterGroupFetch();
   }, []);
   if (!theaterList) {
-    return <Spin></Spin>;
+    return <Spin className="spin" size="large"></Spin>;
   }
   return (
     <div className="filter">

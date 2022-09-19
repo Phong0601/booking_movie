@@ -1,5 +1,6 @@
 .card__movies {
   border: none;
+  height: 100%;
   .screen {
     text-align: center;
     height: 40px;
@@ -26,22 +27,39 @@
       border: none;
       cursor: pointer;
       transition: all 0.3s;
+      border: solid 1px orange  !important;
+      background-color: transparent;
       &:hover {
-        transform: scale(2);
+        transform: scale(1.5);
       }
     }
   }
 }
 .seat--vip {
-  background-color: #a50064;
+  background-color: orange !important;
 }
 .seat--booked {
-  background-color: orange;
+  position: relative ;
+  
+   color: #fff;
+  background-color: transparent !important;
   &:hover {
     transform: none !important;
     cursor: not-allowed !important;
   }
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("https://3.bp.blogspot.com/-LHdLdAlA1E0/UyayLmE1XfI/AAAAAAAAETA/Jr90-IZUUvM/s1600/icon.png") no-repeat;
+    width: 20px;
+    height: 20px;
+  }
 }
 .seat--selected {
-  background: blueviolet;
+  background: rgb(141, 226, 43) !important;
+}
+.note__seat{
+  margin-top: 20px;
 }

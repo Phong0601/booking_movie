@@ -1,9 +1,18 @@
-import React from "react";
-import { Card, Image } from "antd";
-const InfoBooking = ({ infoMovie, seatSelected }) => {
+import React, { useState } from "react";
+import { Card, Image, Button, Modal } from "antd";
+import sortBy from "lodash.sortby";
+import "./InfoBooking.scss";
+
+const InfoBooking = ({ infoMovie, seatSelected, handleBooked }) => {
   const { hinhAnh, gioChieu, diaChi, ngayChieu, tenPhim } = infoMovie;
+
   return (
-    <Card title={tenPhim}>
+    <Card
+      className="infoMoviesCard"
+      headStyle={{ backgroundColor: "orange" }}
+      bodyStyle={{ border: "4px solid orange" }}
+      title={tenPhim}
+    >
       <div>
         <div className="imgage">
           <Image src={hinhAnh} />
@@ -16,16 +25,35 @@ const InfoBooking = ({ infoMovie, seatSelected }) => {
         </div>
         <div className="seat__selected">
           <div>
-            Ghế Chọn:
-            {seatSelected.map((seat) => {
+            <h3> Ghế Chọn:</h3>
+            {sortBy(seatSelected, ["stt"]).map((seat) => {
               return (
-                <h3 key={seat.maGhe} style={{ display: "inline" }}>
+                <h3 key={seat.maGhe} style={{ display: "inline-block" }}>
                   {seat.tenGhe},
                 </h3>
               );
             })}
           </div>
+          <div>
+            <h3>Tổng Tiền:</h3>
+            <h1>
+              {seatSelected
+                .reduce((total, seat, index) => {
+                  return (total += seat.giaVe);
+                }, 0)
+                .toLocaleString()}
+            </h1>
+          </div>
         </div>
+        <Button
+          style={{ borderRadius: "10px" }}
+          onClick={handleBooked}
+          className="btn-payment"
+          type="primary"
+          ghost
+        >
+          Thanh Toán
+        </Button>
       </div>
     </Card>
   );

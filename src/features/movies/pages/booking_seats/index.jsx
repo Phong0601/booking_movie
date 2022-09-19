@@ -7,15 +7,22 @@ import InfoBooking from "./components/InfoBooking/InfoBooking";
 import "./booking.scss";
 import el from "date-fns/esm/locale/el/index.js";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 const Booking = () => {
   const matchIdTheater = useRouteMatch();
   const [loading, setLoadding] = useState(false);
   const [data, setData] = useState(null);
   const [seatSelected, setSeatSelected] = useState([]);
+
   const history = useHistory();
   const goToHome = () => {
     history.push("/");
   };
+  const ticket = {
+    maLichChieu: matchIdTheater.params.id,
+    danhSachVe: [...seatSelected],
+  };
+
   // const go = ()=>{
   //   setTimeout(goToHome, 3000);
   // }
@@ -31,7 +38,7 @@ const Booking = () => {
       });
 
       setLoadding(false);
-      
+
       setData(await res.data.content);
     } catch (error) {
       console.log(error);
@@ -42,12 +49,25 @@ const Booking = () => {
   // const clear = () => {
   //   console.log('click');
   //   clearTimeout(go);
-    
+
   // };
+  const postBookedTicked = async (ticket) => {
+    try {
+      setLoadding(true);
+      const res = await instance.request({
+        url: "/api/QuanLyDatVe/DatVe",
+        method: "POST",
+        data: ticket,
+      });
+      setLoadding(false);
+      goToHome()
+      // fetchSeatBooking(matchIdTheater.params.id);
+    } catch (error) {}
+  };
   useEffect(() => {
     fetchSeatBooking(matchIdTheater.params.id);
   }, []);
-  if (loading) return <Spin></Spin>;
+  if (loading) return <Spin className="spin" size="large"></Spin>;
   const selectSeat = (idSeat) => {
     const found = data?.danhSachGhe.find((seat) => seat.maGhe == idSeat);
     if (found !== -1) {
@@ -59,6 +79,14 @@ const Booking = () => {
     }
   };
 
+  const handleBooked = () => {
+    if (seatSelected.length > 0) {
+      postBookedTicked(ticket);
+      setSeatSelected([]);
+
+    }
+  };
+
   return (
     <div className="booking">
       <div className="container">
@@ -67,6 +95,7 @@ const Booking = () => {
             <div className="container__seat">
               {data ? (
                 <SeatBooking
+                  infoMovie={data.thongTinPhim}
                   selectSeat={selectSeat}
                   seatList={data.danhSachGhe}
                 />
@@ -79,6 +108,7 @@ const Booking = () => {
             <div className="container__info">
               {data ? (
                 <InfoBooking
+                  handleBooked={handleBooked}
                   seatSelected={seatSelected}
                   selectSeat={selectSeat}
                   infoMovie={data.thongTinPhim}
@@ -90,7 +120,6 @@ const Booking = () => {
           </Col>
         </Row>
       </div>
-      {/* <button onClick={clear}>clear timeout</button> */}
     </div>
   );
 };
