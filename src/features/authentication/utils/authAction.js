@@ -52,18 +52,20 @@ export const fetchProfileAction = createAsyncThunk(
 );
 
 // Update Profile
-export const updateProfileAction = createAsyncThunk(
+export const fetchUpdateProfileAction = createAsyncThunk(
 	"auth/updateProfile",
-	async () => {
+	async (user) => {
 		try {
 			const res = await instance.request({
 				url: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
-				method: "POST",
+				method: "PUT",
+				data: user,
 			});
-			console.log(res.data.content);
+
+			// console.log(res.data);
 			return res.data.content;
 		} catch (err) {
-			console.log("Khong thanh cong !");
+			console.log("khong thanh cong");
 		}
 	}
 );

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { signInAction } from "../utils/authAction";
+import Swal from "sweetalert2";
 
 const schema = yup.object({
 	taiKhoan: yup.string().required("*Trường này bắt buộc nhập ! "),
@@ -17,6 +18,9 @@ function SignIn() {
 	const history = useHistory();
 	const goToSignUp = () => {
 		history.push("/signup");
+	};
+	const goBackPage = () => {
+		history.goBack();
 	};
 
 	const dispatch = useDispatch();
@@ -36,10 +40,25 @@ function SignIn() {
 	const signIn = async (user) => {
 		const data = await dispatch(signInAction(user));
 		if (!data.payload) {
-			return alert("Sai tài khoản hoặc mật khẩu, vui lòng nhập lại !");
+			Swal.fire({
+				title: "Error!",
+				text: "Sai tài khoản hoặc mật khẩu, vui lòng nhập lại !",
+				icon: "error",
+				showConfirmButton: false,
+				timer: 1200,
+			});
+			return;
 		} else {
-			alert("Đăng nhập thành công !");
-			history.push("/");
+			// alert("Đăng nhập thành công !");
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Đăng nhập thành công !",
+				text: "Let'go !",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			setTimeout(goBackPage, 2000);
 		}
 	};
 

@@ -77,19 +77,6 @@ function NowShowingMovie() {
 			<div className="container">
 				<h1 className="title">Phim đang chiếu</h1>
 
-				{/* <div
-					className="next-arrow"
-					onClick={() => slider?.current.slickNext()}
-				>
-					<RightOutlined style={{ color: "black" }} />
-				</div>
-				<div
-					className="prev-arrow"
-					onClick={() => slider?.current.slickPrev()}
-				>
-					<LeftOutlined style={{ color: "black" }} />
-				</div> */}
-
 				<Slider {...settings}>
 					{showingMovie?.map((item) => {
 						return (

@@ -1,3 +1,4 @@
+import { PlayCircleOutlined } from "@ant-design/icons";
 import { Col, Row, Menu, Layout } from "antd";
 import React from "react";
 import { useEffect } from "react";
@@ -92,6 +93,7 @@ function MovieSchedule(props) {
 						/>
 					</Sider>
 					<Layout
+						className="box-layout"
 						style={{
 							padding: "0 24px 24px",
 							background: "#f1f2f6",

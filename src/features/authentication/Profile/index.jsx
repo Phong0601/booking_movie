@@ -14,10 +14,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
-import { signUpAction, updateProfileAction } from "../utils/authAction";
+import {
+	fetchProfileAction,
+	fetchUpdateProfileAction,
+	signUpAction,
+} from "../utils/authAction";
+import Swal from "sweetalert2";
 
 const schema = yup.object({
-	taiKhoan: yup.string().required("*Bạn chưa sửa trường này !"),
 	matKhau: yup
 		.string()
 		.required("*Bạn chưa sửa trường này !")
@@ -26,17 +30,32 @@ const schema = yup.object({
 		.string()
 		.required("*Bạn chưa sửa trường này !")
 		.matches(/^[A-Za-z ]+$/g, "*Họ tên không đúng"),
-	email: yup
+	soDt: yup
 		.string()
-		.required("*Bạn chưa sửa trường này !")
-		.email("*Email không đúng định dạng"),
+		.typeError("*Số điện thoại không đúng !")
+		.min(6, "*Số điện thoại phải lớn hơn 8 kí tự !")
+		.required("*Trường này bắt buộc nhập !"),
 });
 
 function Profile() {
+	// dispatch to update Profile
 	const dispatch = useDispatch();
+
+	// go back current page
+	const history = useHistory();
+	const goBack = () => {
+		history.push("/");
+	};
 
 	// Get info profile from Store (to fill <input>)
 	const selectedUser = useSelector((state) => state.auth.profile);
+	const [user, setUser] = useState({
+		taiKhoan: "",
+		matKhau: "",
+		hoTen: "",
+		email: "",
+		soDt: "",
+	});
 	// Validation Form
 	const formik = useFormik({
 		initialValues: {
@@ -47,107 +66,220 @@ function Profile() {
 			soDt: "",
 		},
 		onSubmit: (user) => {
-			console.log(user);
+			// console.log(user);
+			updateAlert();
+			const newUser = {
+				...user,
+				taiKhoan: selectedUser.taiKhoan,
+				email: selectedUser.email,
+				maNhom: "GP03",
+				maLoaiNguoiDung: "KhachHang",
+			};
+			// console.log(newUser);
+			updateUser(newUser);
 		},
 
 		validationSchema: schema,
 	});
 
-	const updateProfile = (user) => {
-		dispatch(updateProfileAction(user));
+	// function update user
+	const updateUser = (user) => {
+		dispatch(fetchUpdateProfileAction(user));
 	};
 
-	///////
-	if (!selectedUser) {
-		return "Loadding";
-	}
+	// useEffect to custom value in <input>
+	useEffect(() => {
+		// Chạy lại fetchProfile để lấy đầy đủ thông tin tài khoản hơn
+		// Vì khi App chạy lần đầu, nó chỉ lấy thông tin đăng nhập, chứ  chưa
+		// có đầy đủ thông tin
+
+		// Nếu lần đầu tiền chưa có giá trị trong selectedUser
+		if (!selectedUser) return;
+		// Nếu như đang cập nhật mà bấm vào nut submit lần nữa
+		if (selectedUser.taiKhoan === user.taiKhoan) return;
+		setUser(selectedUser);
+	}, [selectedUser, user]);
+
+	const handleChange = (event) => {
+		// console.log(event.target.value, event.target.name);
+		setUser({ ...user, [event.target.name]: event.target.value });
+	};
+
+	// Setting alert
+	const updateAlert = () => {
+		Swal.fire({
+			title: "Bạn có muốn cập nhật không ?",
+			text: "Nếu cập nhật, thông tin cũ sẽ thay đổi !",
+			icon: "info",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			cancelButtonText: "Hủy",
+			confirmButtonText: "Cập nhật!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Cập nhật thành công !",
+					text: "Hãy xem lại thông tin cá nhân của bạn!",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			}
+		});
+	};
 
 	return (
 		<div className="Profile">
-			{console.log(selectedUser)}
+			{/* {console.log(selectedUser.hoTen)} */}
 			<div className="container">
 				<div className="content-info">
+					<h3>Thông tin cá nhân</h3>
 					<form onSubmit={formik.handleSubmit} className="form">
-						<Input
-							name="taiKhoan"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							className="input"
-							type="text"
-							placeholder="Username"
-							prefix={<UserOutlined style={{ marginRight: 8 }} />}
-							value={selectedUser.taiKhoan}
-						/>
-						{formik.touched.taiKhoan && formik.errors.taiKhoan && (
-							<p className="errorText">
-								{formik.errors.taiKhoan}
-							</p>
-						)}
-						<Input
-							name="matKhau"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							className="input"
-							type="text"
-							placeholder="Password"
-							prefix={<LockOutlined style={{ marginRight: 8 }} />}
-							value={selectedUser.matKhau}
-						/>
-						{formik.touched.matKhau && formik.errors.matKhau && (
-							<p className="errorText">{formik.errors.matKhau}</p>
-						)}
+						<div className="form-group">
+							<label htmlFor="">Tài khoản:</label>
+							<Input
+								name="taiKhoan"
+								onChange={(e) => {
+									formik.handleChange(e);
+									handleChange(e);
+								}}
+								onBlur={formik.handleBlur}
+								className="input"
+								type="text"
+								placeholder="Username"
+								prefix={
+									<UserOutlined style={{ marginRight: 8 }} />
+								}
+								value={user.taiKhoan}
+								disabled
+							/>
+							{formik.touched.taiKhoan &&
+								formik.errors.taiKhoan && (
+									<p className="errorText">
+										{formik.errors.taiKhoan}
+									</p>
+								)}
+						</div>
 
-						<Input
-							name="hoTen"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							className="input"
-							type="text"
-							placeholder="FullName"
-							prefix={
-								<FileTextOutlined style={{ marginRight: 8 }} />
-							}
-							value={selectedUser.hoTen}
-						/>
-						{formik.touched.hoTen && formik.errors.hoTen && (
-							<p className="errorText">{formik.errors.hoTen}</p>
-						)}
-						<Input
-							name="email"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							className="input"
-							type="text"
-							placeholder="Email"
-							prefix={<MailOutlined style={{ marginRight: 8 }} />}
-							value={selectedUser.email}
-						/>
-						{formik.touched.email && formik.errors.email && (
-							<p className="errorText">{formik.errors.email}</p>
-						)}
-						<Input
-							name="soDt"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							className="input"
-							type="text"
-							placeholder="Phone"
-							prefix={
-								<PhoneOutlined style={{ marginRight: 8 }} />
-							}
-							value={selectedUser.soDt}
-						/>
-						{formik.touched.soDt && formik.errors.soDt && (
-							<p className="errorText">{formik.errors.soDt}</p>
-						)}
+						<div className="form-group">
+							<label htmlFor="">Mật khẩu:</label>
+							<Input
+								name="matKhau"
+								onChange={(e) => {
+									formik.handleChange(e);
+									handleChange(e);
+								}}
+								onBlur={formik.handleBlur}
+								className="input"
+								type="text"
+								placeholder="Password"
+								prefix={
+									<LockOutlined style={{ marginRight: 8 }} />
+								}
+								value={user.matKhau}
+							/>
+							{formik.touched.matKhau &&
+								formik.errors.matKhau && (
+									<p className="errorText">
+										{formik.errors.matKhau}
+									</p>
+								)}
+						</div>
 
-						<Button
-							htmlType="submit"
-							type="primary"
-							className="btn-submit"
-						>
-							Cập nhật
-						</Button>
+						<div className="form-group">
+							<label htmlFor="">Họ tên:</label>
+							<Input
+								name="hoTen"
+								onChange={(e) => {
+									formik.handleChange(e);
+									handleChange(e);
+								}}
+								onBlur={formik.handleBlur}
+								className="input"
+								type="text"
+								placeholder="FullName"
+								prefix={
+									<FileTextOutlined
+										style={{ marginRight: 8 }}
+									/>
+								}
+								value={user.hoTen}
+							/>
+							{formik.touched.hoTen && formik.errors.hoTen && (
+								<p className="errorText">
+									{formik.errors.hoTen}
+								</p>
+							)}
+						</div>
+
+						<div className="form-group">
+							<label htmlFor="">Email:</label>
+							<Input
+								name="email"
+								onChange={(e) => {
+									formik.handleChange(e);
+									handleChange(e);
+								}}
+								onBlur={formik.handleBlur}
+								className="input"
+								type="text"
+								placeholder="Email"
+								prefix={
+									<MailOutlined style={{ marginRight: 8 }} />
+								}
+								value={user.email}
+								disabled
+							/>
+							{formik.touched.email && formik.errors.email && (
+								<p className="errorText">
+									{formik.errors.email}
+								</p>
+							)}
+						</div>
+
+						<div className="form-group">
+							<label htmlFor="">Số điện thoại:</label>
+							<Input
+								name="soDt"
+								onChange={(e) => {
+									formik.handleChange(e);
+									handleChange(e);
+								}}
+								onBlur={formik.handleBlur}
+								className="input"
+								type="text"
+								placeholder="Phone"
+								prefix={
+									<UserOutlined style={{ marginRight: 8 }} />
+								}
+								value={user.soDt}
+							/>
+							{formik.touched.soDt && formik.errors.soDt && (
+								<p className="errorText">
+									{formik.errors.soDt}
+								</p>
+							)}
+						</div>
+
+						<div className="btn-handle">
+							<Button
+								htmlType="submit"
+								type="primary"
+								className="btn-submit"
+							>
+								Cập nhật
+							</Button>
+
+							<Button
+								onClick={goBack}
+								type="default"
+								className="btn-back"
+							>
+								Trở về
+							</Button>
+						</div>
 					</form>
 				</div>
 			</div>

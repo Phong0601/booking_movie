@@ -9,6 +9,8 @@ import instance from "api/instance";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfileAction } from "features/authentication/utils/authAction";
+import logoSonic from "../../../assets/img/icon/logo-sonic.png";
+import Swal from "sweetalert2";
 
 const Header = () => {
 	const [current, setCurrent] = useState("");
@@ -28,15 +30,33 @@ const Header = () => {
 
 	// Logout
 	const logout = () => {
-		if (window.confirm("Bạn có muốn đăng xuất ?")) {
-			// 1) Remove token localStorage
-			localStorage.removeItem("token");
-			localStorage.removeItem("login");
-			// 2) Set profile Store --> null
-			dispatch(fetchProfileAction({ payload: null }));
-		} else {
-			return;
-		}
+		Swal.fire({
+			title: "Bạn có muốn đăng xuất không ?",
+			text: "Nếu đăng xuất, bạn sẽ không thể đặt vé !",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			cancelButtonText: "Hủy",
+			confirmButtonText: "Đăng xuất!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Đăng xuất thành công !",
+					text: "Gặp lại bạn sau!",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+				///////
+				// 1) Remove token localStorage
+				localStorage.removeItem("token");
+				// 2) Set profile Store --> null
+				dispatch(fetchProfileAction({ payload: null }));
+				goToHome();
+			}
+		});
 	};
 
 	const onClick = (e) => {
@@ -51,7 +71,6 @@ const Header = () => {
 		}
 		if (e.key === "6") {
 			logout();
-			goToHome("/");
 		}
 	};
 
@@ -158,7 +177,9 @@ const Header = () => {
 			<div className="container">
 				<Layout.Header className="navbar">
 					<div className="left">
-						<div className="logo"></div>
+						<div className="logo" onClick={goToHome}>
+							<img src={logoSonic} alt=""></img>
+						</div>
 						<div className="ticket">
 							<svg
 								width={32}

@@ -12,11 +12,11 @@ import Footer from "common/components/Footer";
 const Home = () => {
 	return (
 		<div>
-			{/* <Banner />
+			{/* <Banner /> */}
 			<NowShowingMovie />
-			<UpcomingMovie />
-			<Trailer /> */}
-			<FilterMovies />
+			{/* <UpcomingMovie /> */}
+			{/* <Trailer /> */}
+			{/* <FilterMovies /> */}
 		</div>
 	);
 };

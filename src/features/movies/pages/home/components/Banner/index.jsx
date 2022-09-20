@@ -41,6 +41,7 @@ function Banner() {
 
 	return (
 		<div className="Banner">
+			<div className="container-fluid"></div>
 			<Slider className="slider" {...settings}>
 				{banner?.map((item) => {
 					return (

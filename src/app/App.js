@@ -1,5 +1,11 @@
 import "../App.scss";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	useRouteMatch,
+	useHistory,
+} from "react-router-dom";
 import Home from "features/movies/pages/home";
 import Detail from "features/movies/pages/detail";
 import Payment from "features/movies/pages/payment";
@@ -8,14 +14,15 @@ import Header from "common/components/Header";
 import SignIn from "features/authentication/SignIn";
 import SignUp from "features/authentication/SignUp";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProfileAction } from "features/authentication/utils/authAction";
 import Profile from "features/authentication/Profile";
 import Footer from "common/components/Footer";
 
 function App() {
 	// maintain my account --by Hung
-	const dispatch = useDispatch();	
+
+	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(fetchProfileAction());
 	}, []);

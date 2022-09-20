@@ -11,6 +11,7 @@ import zalo from "../../../assets/img/icon/zalo.png";
 import twitter from "../../../assets/img/icon/twitter.png";
 import instagram from "../../../assets/img/icon/insta.png";
 import copyright from "../../../assets/img/icon/copyright.png";
+import logoSonic from "../../../assets/img/icon/logo-sonic.png";
 
 function Footer() {
 	const movieType = [
@@ -194,10 +195,12 @@ function Footer() {
 				>
 					<Col xs={24} sm={24} md={24} lg={12} xl={12}>
 						<div className="company-desc">
-							<div className="logo">MegaMovie</div>
+							<div className="logo">
+								<img src={logoSonic} alt="" />
+							</div>
 							<div className="desc">
 								<div className="title">
-									Công ty cổ phần dịch vụ web MegaMovie
+									Công ty cổ phần dịch vụ web Sonic Movie
 								</div>
 								<div className="address">
 									Tầng 7, Tòa nhà Landmark 81, Số 100 Điện
