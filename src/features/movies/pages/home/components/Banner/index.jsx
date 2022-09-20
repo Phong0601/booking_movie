@@ -30,6 +30,7 @@ function Banner() {
 	}
 
 	const settings = {
+		
 		dots: true,
 		infinite: true,
 		speed: 500,
@@ -42,10 +43,10 @@ function Banner() {
 	return (
 		<div className="Banner">
 			<div className="container-fluid"></div>
-			<Slider className="slider" {...settings}>
+			<Slider className="slider container" {...settings}>
 				{banner?.map((item) => {
 					return (
-						<div key={item.maBanner} className="card">
+						<div key={item.maBanner} className=" card">
 							<div className="card-left">
 								<h1>Đặt vé xem phim nhanh chóng</h1>
 								<div className="description">
@@ -68,7 +69,8 @@ function Banner() {
 										<CheckCircleOutlined
 											style={{
 												fontSize: 24,
-												color: "#A50064",
+												color: '#A50064',
+												
 											}}
 										/>
 										<div className="item-text">

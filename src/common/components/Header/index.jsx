@@ -52,6 +52,8 @@ const Header = () => {
 				///////
 				// 1) Remove token localStorage
 				localStorage.removeItem("token");
+				localStorage.removeItem("login");
+
 				// 2) Set profile Store --> null
 				dispatch(fetchProfileAction({ payload: null }));
 				goToHome();
@@ -109,7 +111,7 @@ const Header = () => {
 		{
 			label: "Lịch Chiếu",
 			key: "sub-2",
-			icon: <CalendarOutlined />,
+			icon: <CalendarOutlined />,	
 			children: [
 				{
 					label: "Phim Đang Chiếu",

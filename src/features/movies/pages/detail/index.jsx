@@ -25,7 +25,7 @@ const Detail = () => {
 	const dispatch = useDispatch();
 	const match = useRouteMatch();
 	const movieId = match.params.id;
-
+	console.log(match);
 	//// received data
 	const selectedMovie = useSelector(selectedMovieSelector);
 	const theater = useSelector(theaterSelector);

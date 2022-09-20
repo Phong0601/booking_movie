@@ -19,7 +19,7 @@ function MovieBody(props) {
 	const movieList = props.movieList;
 
 	return (
-		<div className="MovieBody">
+		<div style={{overflow:'hidden'}} className="MovieBody">
 			{/* {console.log(selectedMovie)} */}
 			<div className="container">
 				<Row>

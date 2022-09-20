@@ -16,7 +16,8 @@ const TheaterGroup = (props) => {
   if (!movieTheaterMovie) return <Spin></Spin>;
   //Go Pages Details with idMovies --by Phong
   const goToDetail = (idMovies) => {
-    history.push("/detail/" + idMovies);
+    history.push("/detail/" + idMovies+'/'+null );
+    //	history.push("/detail/" + maPhim + "/" + biDanh);
   };
   //Go Pages Details with idPremiere --by Phong
   const goToBooking = (idPremiere) => {

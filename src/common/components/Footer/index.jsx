@@ -82,7 +82,7 @@ function Footer() {
 	return (
 		<div className="Footer">
 			<div className="container">
-				<Row gutter={16}>
+				<Row gutter={[0,16]} justify="space-between">
 					<Col xs={12} sm={12} md={6} lg={4} xl={4}>
 						<div className="schedule">
 							<div className="title">Lịch chiếu phim</div>
@@ -125,13 +125,13 @@ function Footer() {
 							})}
 						</div>
 					</Col>
-					<Col xs={12} sm={12} md={6} lg={4} xl={4}></Col>
-					<Col xs={24} sm={24} md={24} lg={8} xl={8}>
+					{/* <Col xs={12} sm={12} md={6} lg={4} xl={4}></Col> */}
+					<Col xs={12} sm={12} md={6} lg={8} xl={12}>
 						<div className="customer-care">
 							<div className="title">CHĂM SÓC KHÁCH HÀNG</div>
-							<div className="address">
+							<div style={{display:'inline-block'}} className="address">
 								Địa chỉ: Tòa nhà Trong Mơ, Số 100 Phạm Văn Đồng,
-								Phường 12, Quận Bình Thạnh, Thành phố Hồ Chí
+								Phường 12,<br/> Quận Bình Thạnh, Thành phố Hồ Chí
 								Minh
 							</div>
 							<div className="hotline">
@@ -145,15 +145,13 @@ function Footer() {
 							<div className="switchboard">
 								Tổng đài gọi ra: <strong>0123.456.789</strong>
 							</div>
-							<div className="help">
+							{/* <div className="help">
 								<div className="left">
 									<GitlabOutlined />
 								</div>
 
 								<div className="right">
-									<span>Hướng dẫn trợ giúp trên </span>
-
-									<strong>MegaMovie</strong>
+									<p className="text">Hướng dẫn trợ giúp trên <br/><strong>MegaMovie</strong></p>
 								</div>
 							</div>
 
@@ -180,13 +178,13 @@ function Footer() {
 										<strong>Google Play</strong>
 									</div>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</Col>
 				</Row>
 
 				<Row
-					gutter={16}
+					gutter={[0,16]}
 					style={{
 						marginTop: 10,
 						paddingTop: 20,

@@ -3,8 +3,13 @@
 	margin-bottom: 60px;
 
 	.slider {
-		max-width: 120rem;
-		margin: 0 auto;
+		// max-width: 120rem;
+		// margin: 0 auto;
+		// padding: 0 15px;
+		.slick-arrow{
+			display: none !important;
+		}
+		
 		.card {
 			display: flex !important;
 			align-items: center;

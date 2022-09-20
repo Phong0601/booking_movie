@@ -16,7 +16,7 @@ const Home = () => {
 			<NowShowingMovie />
 			{/* <UpcomingMovie /> */}
 			{/* <Trailer /> */}
-			{/* <FilterMovies /> */}
+			<FilterMovies />
 		</div>
 	);
 };

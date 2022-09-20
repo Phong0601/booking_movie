@@ -26,7 +26,7 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchProfileAction());
 	}, []);
-
+	
 	return (
 		<div>
 			<Router>
@@ -40,7 +40,7 @@ function App() {
 					<Route path="/signup" component={SignUp} />
 					<Route path="/profile" component={Profile} />
 				</Switch>
-				{/* <Footer /> */}
+				<Footer />
 			</Router>
 		</div>
 	);

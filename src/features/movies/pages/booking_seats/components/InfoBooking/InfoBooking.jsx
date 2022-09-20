@@ -45,15 +45,11 @@ const InfoBooking = ({ infoMovie, seatSelected, handleBooked }) => {
             </h1>
           </div>
         </div>
-        <Button
-          style={{ borderRadius: "10px" }}
-          onClick={handleBooked}
-          className="btn-payment"
-          type="primary"
-          ghost
-        >
-          Thanh Toán
-        </Button>
+        <div className="button">
+          <button onClick={handleBooked} style={{ border: "none" }}>
+            <a>Đặt Vé</a>
+          </button>
+        </div>
       </div>
     </Card>
   );

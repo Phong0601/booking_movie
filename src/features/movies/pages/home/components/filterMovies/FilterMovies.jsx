@@ -15,7 +15,7 @@ const FilterMovies = () => {
   };
 
   const theaterGroupFetch = (idTheater) => {
-    console.log(idTheater);
+    
     dispatch(fetchMoviesTheater(idTheater));
   };
 

@@ -23,9 +23,9 @@ const Booking = () => {
     danhSachVe: [...seatSelected],
   };
 
-  // const go = ()=>{
-  //   setTimeout(goToHome, 3000);
-  // }
+  const goOut = ()=>{
+    setTimeout(goToHome, 20000);
+  }
   const fetchSeatBooking = async (idTheater) => {
     try {
       setLoadding(true);
@@ -38,7 +38,7 @@ const Booking = () => {
       });
 
       setLoadding(false);
-
+      goOut()
       setData(await res.data.content);
     } catch (error) {
       console.log(error);
@@ -89,17 +89,19 @@ const Booking = () => {
   return (
     <div className="booking">
       <div className="container">
-        <Row>
+        <Row >
           <Col
             style={{ marginBottom: "200px" }}
             span={18}
             sm={{ span: 24 }}
             xs={{ span: 24 }}
-            md={{ span: 18 }}
+            lg={{ span: 18 }}
+            
           >
             <div className="container__seat">
               {data ? (
                 <SeatBooking
+                  handleBooked={handleBooked}
                   seatSelected={seatSelected}
                   infoMovie={data.thongTinPhim}
                   selectSeat={selectSeat}
@@ -111,7 +113,7 @@ const Booking = () => {
             </div>
           </Col>
           <Col span={6} sm={{ span: 24 }} xs={{ span: 24 }} md={{ span: 6 }}>
-            <div className="container__info">
+            <div  style={{padding:'0 10px'}} className="container__info">
               {data ? (
                 <InfoBooking
                   handleBooked={handleBooked}
