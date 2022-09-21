@@ -1,5 +1,5 @@
 // format date
-export const formatDate = (date) => {
+export const formatHour = (date) => {
 	const dateObj = new Date(date);
 	const hour = dateObj.getHours();
 	const min = dateObj.getMinutes();

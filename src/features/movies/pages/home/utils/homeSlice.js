@@ -3,15 +3,15 @@ import {
 	fetchMovieListAction,
 	fetchMoviesTheater,
 	fetchTheater,
-	fetchTheaterGroup,
+	fetchTheaterGroupAction,
 } from "./homeAction";
 const homeSlice = createSlice({
 	name: "home",
 	initialState: {
 		movieList: null,
 		theaterList: null,
-		// theaterGroup: null,
 		moviesTheater: null,
+		// theaterGroup: null,
 	},
 	reducers: {},
 	extraReducers: (builder) => {
@@ -24,12 +24,15 @@ const homeSlice = createSlice({
 		builder.addCase(fetchTheater.fulfilled, (state, action) => {
 			state.theaterList = action.payload;
 		});
-		// builder.addCase(fetchTheaterGroup.fulfilled, (state, action) => {
-		// 	state.theaterGroup = action.payload;
-		// });
+
 		builder.addCase(fetchMoviesTheater.fulfilled, (state, action) => {
 			state.moviesTheater = action.payload;
 		});
+
+		// Theater Group
+		// builder.addCase(fetchTheaterGroupAction.fulfilled, (state, action) => {
+		// 	state.theaterGroup = action.payload;
+		// });
 	},
 });
 export default homeSlice;

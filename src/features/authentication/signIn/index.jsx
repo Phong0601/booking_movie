@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import * as yup from "yup";
 import { signInAction } from "../utils/authAction";
 import Swal from "sweetalert2";
@@ -19,6 +19,7 @@ function SignIn() {
 	const goToSignUp = () => {
 		history.push("/signup");
 	};
+
 	const goBackPage = () => {
 		history.goBack();
 	};
@@ -67,6 +68,7 @@ function SignIn() {
 			className="SignIn"
 			style={{ backgroundImage: "url(/bg/bgSignin.jpg)" }}
 		>
+			{/* {console.log(match.path)} */}
 			<div className="content-signin">
 				<h2 className="title">Sign In</h2>
 				<UserOutlined className="icon-user" />

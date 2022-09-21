@@ -7,7 +7,8 @@ import {
 import { Spin, Col, Divider, Row, Modal, Button } from "antd";
 import { NavLink } from "react-router-dom";
 import YouTube from "react-youtube";
-import { formatDate } from "common/utils/date";
+import { formatHour } from "common/utils/date";
+import { formatDateString } from "common/utils/dateString";
 
 function MovieInfo(props) {
 	const {
@@ -200,7 +201,7 @@ function MovieInfo(props) {
 
 								<div className="show-date">
 									<h3>Ngày chiếu</h3>
-									<h4>{formatDate(ngayKhoiChieu)}</h4>
+									<h4>{formatDateString(ngayKhoiChieu)}</h4>
 								</div>
 							</div>
 						</Col>

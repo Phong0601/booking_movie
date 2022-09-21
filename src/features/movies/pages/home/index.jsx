@@ -8,6 +8,7 @@ import NowShowingMovie from "./components/NowShowingMovie";
 import UpcomingMovie from "./components/UpcomingMovie";
 import Trailer from "./components/Trailer";
 import Footer from "common/components/Footer";
+import CinemasGroup from "./components/CinemasGroup";
 
 const Home = () => {
 	return (
@@ -15,8 +16,9 @@ const Home = () => {
 			{/* <Banner /> */}
 			<NowShowingMovie />
 			{/* <UpcomingMovie /> */}
+			{/* <FilterMovies /> */}
 			{/* <Trailer /> */}
-			<FilterMovies />
+			{/* <CinemasGroup /> */}
 		</div>
 	);
 };

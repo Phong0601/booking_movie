@@ -64,7 +64,8 @@ export const fetchMoviesTheater = createAsyncThunk(
 		} catch (error) {}
 	}
 );
-export const fetchTheaterGroup = createAsyncThunk(
+
+export const fetchTheaterGroupAction = createAsyncThunk(
 	"home/fetchTheaterGroup",
 	async (idTheater) => {
 		try {

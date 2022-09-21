@@ -101,3 +101,15 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 1200px) {
+	.Comment {
+		padding-left: 30px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.Comment {
+		padding-right: 30px;
+	}
+}
