@@ -13,10 +13,9 @@ const formatNumber = (num) => {
 };
 
 export const getCurrentDay = () => {
-	const dateObj = new Date();
-	const day = dateObj.getDate();
-	const month = dateObj.getMonth();
-	const year = dateObj.getFullYear();
-
-	return `${day}/${month}/${year}`;
+	const today = new Date();
+	const dd = String(today.getDate()).padStart(2, "0");
+	const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+	const yyyy = today.getFullYear();
+	return `${dd}/${mm}/${yyyy}`;
 };

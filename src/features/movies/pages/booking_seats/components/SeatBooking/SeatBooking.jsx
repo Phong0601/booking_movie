@@ -3,16 +3,22 @@ import { Card, Spin, Row, Col, Button } from "antd";
 import sortBy from "lodash.sortby";
 import "./SeatBooking.scss";
 console.log();
-const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelected }) => {
-	console.log(infoMovie);
+const SeatBooking = ({
+	seatList,
+	infoMovie,
+	selectSeat,
+	handleBooked,
+	seatSelected,
+}) => {
 	const checked = useRef([]);
 	const handleEvent = (value, index) => {
+		console.log({ value }, { index });
 		selectSeat(value);
 
 		const span = checked.current;
 		span[index].classList.toggle("seat--selected");
 	};
-
+	console.log(checked);
 	return (
 		<Card
 			className="card__movies"
@@ -20,7 +26,11 @@ const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelecte
 			headStyle={{ backgroundColor: "orange" }}
 			bodyStyle={{ border: "4px solid orange", height: "100%" }}
 		>
-			<div className="screen">Screen<br/>Vui Lòng Chọn Ghế Trong Vòng 2 Phút</div>
+			<div className="screen">
+				Screen
+				<br />
+				Vui Lòng Chọn Ghế Trong Vòng 2 Phút
+			</div>
 			<div className="reponsive">
 				<div className="seat">
 					<h3 style={{ display: "inline-block" }}> Ghế Chọn:</h3>
@@ -28,7 +38,10 @@ const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelecte
 						return (
 							<h3
 								key={seat.maGhe}
-								style={{ display: "inline-block",fontSize:'20px' }}
+								style={{
+									display: "inline-block",
+									fontSize: "20px",
+								}}
 							>
 								{seat.tenGhe},
 							</h3>
@@ -37,7 +50,13 @@ const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelecte
 				</div>
 				<div className="title">
 					<h3 style={{ display: "inline-block" }}>Tổng Tiền:</h3>
-					<h2 style={{ display: "inline-block",fontSize:'25px',color:"rgb(141, 226, 43)" }}>
+					<h2
+						style={{
+							display: "inline-block",
+							fontSize: "25px",
+							color: "rgb(141, 226, 43)",
+						}}
+					>
 						{seatSelected
 							.reduce((total, seat, index) => {
 								return (total += seat.giaVe);
@@ -46,9 +65,10 @@ const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelecte
 					</h2>
 				</div>
 				<div className="button">
-						<button onClick={handleBooked} style={{border:'none'}}><a>Đặt vé</a></button>
+					<button onClick={handleBooked} style={{ border: "none" }}>
+						<a>Đặt vé</a>
+					</button>
 				</div>
-				
 			</div>
 			<div className="seat__group">
 				<Row gutter={[8, 8]}>

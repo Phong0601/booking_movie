@@ -43,33 +43,31 @@ function NowShowingMovie() {
 		// arrows: false,
 		nextArrow: <SampleNextArrow />,
 		prevArrow: <SamplePrevArrow />,
-		appendDots: dots => (
+		appendDots: (dots) => (
 			<div
-			  style={{
-				
-				backgroundColor: "#ddd",
-				borderRadius: "10px",
-				padding: "10px"
-			  }}
+				style={{
+					backgroundColor: "#ddd",
+					borderRadius: "10px",
+					padding: "10px",
+				}}
 			>
-			  <ul style={{ margin: "0px" }}> {dots} </ul>
+				<ul style={{ margin: "0px" }}> {dots} </ul>
 			</div>
-		  ),
-		  customPaging: i => (
-			<div	
-			  style={{
-				 
-				  lineHeight:'30px',
-				width: "30px",
-				height:'30px',
-				borderRadius:'50%',
-				color: "blue",
-				border: "1px blue solid"
-			  }}
+		),
+		customPaging: (i) => (
+			<div
+				style={{
+					lineHeight: "30px",
+					width: "30px",
+					height: "30px",
+					borderRadius: "50%",
+					color: "blue",
+					border: "1px blue solid",
+				}}
 			>
-			  {i + 1}
+				{i + 1}
 			</div>
-		  ),
+		),
 
 		responsive: [
 			{

@@ -32,13 +32,7 @@ const schema = yup.object({
 		.string()
 		.required("*Trường này bắt buộc nhập !")
 		.email("*Email không đúng định dạng"),
-	soDt: yup
-		.number()
-		.typeError("*Số điện thoại không đúng !")
-		.positive("*Số điện thoại không bắt đầu bằng dấu trừ (-) !")
-		.integer("*Số điện thoại không được dùng số thập phân !")
-		.min(8, "*Số điện thoại phải lớn hơn 8 kí tự !")
-		.required("*Trường này bắt buộc nhập !"),
+	soDt: yup.string().required("*Trường này bắt buộc nhập !"),
 });
 
 function SignUp() {

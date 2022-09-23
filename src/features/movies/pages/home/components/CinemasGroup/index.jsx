@@ -1,72 +1,216 @@
-import { DesktopOutlined, EnvironmentOutlined } from "@ant-design/icons";
-import { Card, Col, Rate, Row, Spin } from "antd";
+import {
+	DesktopOutlined,
+	EnvironmentOutlined,
+	SearchOutlined,
+} from "@ant-design/icons";
+import { Card, Col, Input, Rate, Row, Spin, Table } from "antd";
+import instance from "api/instance";
+import axios from "axios";
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTheaterGroupAction } from "../../utils/homeAction";
+import { fetchMoviesTheater, fetchTheater } from "../../utils/homeAction";
 
 function CinemasGroup() {
-	const cinemasGroup = useSelector((state) => state.movieHome.moviesTheater);
+	const dispatch = useDispatch();
 
-	if (!cinemasGroup) {
-		return (
-			<div className="" style={{ textAlign: "center" }}>
-				<Spin size="large" />
-			</div>
-		);
-	}
+	// Get <LayThongTinHeThongRap>
+	const [theaterGroup, setTheaterGroup] = useState(null);
+
+	// Array promise all
+	const [listDetail, setListDetail] = useState([]);
+	const mergeArr = () => {
+		const arr = [];
+		listDetail.map((item) => {
+			return item.map((item2) => {
+				return arr.push(item2);
+			});
+		});
+		return arr;
+	};
+
+	const newListTheater = mergeArr();
+
+	const [theaterContent, setTheaterContent] = useState(newListTheater[0]);
+
+	// Find
+	const [query, setQuery] = useState("");
+
+	// Active CSS when click
+	const [activeId, setActiveId] = useState();
+
+	const toggleActive = (index) => {
+		if (index === activeId) {
+			return "active";
+		} else {
+			return "inactive";
+		}
+	};
+
+	// Call api to get theater
+	const fetchTheaterInfo = async (id) => {
+		try {
+			const res = await instance.request({
+				url: "/api/QuanLyRap/LayThongTinCumRapTheoHeThong",
+				method: "GET",
+				params: {
+					maHeThongRap: id,
+				},
+			});
+			return res.data.content;
+		} catch (err) {}
+	};
+
+	const fetchTheaterList = async () => {
+		const data = await dispatch(fetchTheater());
+		setTheaterGroup(data.payload);
+		// Call multiple  API
+		let arrId = data.payload?.map((item) => item.maHeThongRap);
+		const arrTheater = [];
+		arrId.map((id) => {
+			// 1) Call async function  (fetchTheaterInfo)
+			// 2) Push all promise (fetchTheaterInfo) to Array
+			arrTheater.push(fetchTheaterInfo(id));
+		});
+		// Wait all promise, set cinemas detail list
+		Promise.all(arrTheater).then((res) => setListDetail(res));
+	};
+
+	useEffect(() => {
+		fetchTheaterList();
+	}, [theaterContent]);
+
+	//
+	const handleChangeTheater = (theater) => {
+		setTheaterContent(theater);
+	};
+
+	if (!newListTheater) return <Spin size="large" />;
+	if (!theaterGroup) return <Spin size="large" />;
+
+	console.log(theaterContent);
+	// Setting table antd
+
+	const columns = [
+		{
+			title: "STT",
+			key: "index",
+			render: (text, record, index) => index + 1,
+		},
+		{
+			title: "Mã rạp",
+			dataIndex: "maRap",
+			key: "maRap",
+		},
+
+		{
+			title: "Tên rạp",
+			dataIndex: "tenRap",
+			key: "tenRap",
+		},
+	];
+
+	const data = theaterContent?.danhSachRap;
 
 	return (
 		<div className="CinemasGroup">
-			{/* {console.log(cinemasGroup[0].lstCumRap)} */}
 			<div className="container">
 				<h1>Hệ thống rạp chiếu phim</h1>
 				<h3>Danh sách các rạp chiếu phim lớn nhất cả nước</h3>
-				<Row gutter={[20, 20]}>
-					{cinemasGroup?.map((item) => {
+				<div className="theater-group">
+					{theaterGroup?.map((item) => {
 						return (
-							<Col
+							<div
+								className="theater-item"
 								key={item.maHeThongRap}
-								xs={24}
-								sm={24}
-								md={12}
-								lg={12}
-								xl={12}
 							>
-								<div className="site-card-border-less-wrapper">
-									<Card hoverable="true">
-										<div className="content">
-											<div className="left">
-												<img src={item.logo} alt="" />
-											</div>
-											<div className="right">
-												<div className="cinemas-id">
-													{item.maHeThongRap}
-												</div>
-												<div className="cinemas-name">
-													{item.tenHeThongRap}
-												</div>
-												<div className="star">
-													<Rate
-														allowHalf
-														defaultValue={5}
-														style={{ fontSize: 14 }}
-													/>
-												</div>
-
-												<div className="cinemas-length">
-													<EnvironmentOutlined />
-													<span>
-														{item.lstCumRap.length}
-													</span>
-													<span>Cụm rạp</span>
-												</div>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</Col>
+								<img src={item.logo} width={40} alt="" />
+							</div>
 						);
 					})}
+				</div>
+				<Row
+					gutter={[0, 20]}
+					style={{ border: "1px solid #d1d1d1", background: "white" }}
+				>
+					<Col xs={24} sm={24} md={12} lg={12} xl={8}>
+						<div className="find-content">
+							<Input
+								onChange={(e) => setQuery(e.target.value)}
+								placeholder="Tìm rạp theo tên..."
+								style={{
+									padding: "10px 10px",
+									borderRadius: 5,
+								}}
+								prefix={<SearchOutlined />}
+							/>
+							<div className="theater-list">
+								{newListTheater
+									?.filter((item) =>
+										item.tenCumRap
+											.toLowerCase()
+											.includes(query)
+									)
+									.map((item, index) => {
+										return (
+											<div
+												key={item.maCumRap}
+												className={
+													"theater" +
+													" " +
+													toggleActive(index)
+												}
+												onClick={() => {
+													handleChangeTheater(item);
+													setActiveId(index);
+												}}
+											>
+												{item.tenCumRap}
+											</div>
+										);
+									})}
+							</div>
+						</div>
+					</Col>
+					<Col xs={24} sm={24} md={12} lg={12} xl={16}>
+						<div className="detail-content">
+							<h2>Thông tin chi tiết cụm rạp </h2>
+							{theaterContent ? (
+								<div className="detail">
+									<div className="theater-name">
+										<div className="left">
+											Tên cụm rạp:{" "}
+										</div>
+										<div className="right">
+											{theaterContent.tenCumRap}
+										</div>
+									</div>
+									<div className="theater-id">
+										<div className="left">Mã cụm rạp: </div>
+										<div className="right">
+											{theaterContent.maCumRap}
+										</div>
+									</div>
+									<div className="address">
+										<div className="left">Địa chỉ: </div>
+										<div className="right">
+											{theaterContent.diaChi}
+										</div>
+									</div>
+									<div className="list">
+										<Table
+											className="table"
+											columns={columns}
+											dataSource={data}
+											pagination={false}
+										/>
+									</div>
+								</div>
+							) : (
+								"Hãy chọn một cụm rạp để xem thông tin !"
+							)}
+						</div>
+					</Col>
 				</Row>
 			</div>
 		</div>

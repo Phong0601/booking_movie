@@ -109,6 +109,7 @@ function UserComment() {
 	return (
 		<div className="Comment">
 			{/* {console.log(user)} */}
+
 			<div className="form-body">
 				<div className="title-content">
 					<span>
