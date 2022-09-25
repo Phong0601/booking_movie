@@ -194,8 +194,12 @@ function UpdateUser() {
 							Cập nhật
 						</Button>
 
-						<Button type="default" className="btn-back">
-							Trở về
+						<Button
+							type="default"
+							className="btn-back"
+							onClick={() => history.push("/")}
+						>
+							Hủy
 						</Button>
 					</div>
 				</form>

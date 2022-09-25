@@ -73,7 +73,7 @@ function UpcomingMovie() {
 	};
 
 	return (
-		<div className="UpcomingMovie">
+		<div className="UpcomingMovie" id="upComing">
 			<div className="container">
 				<h1 className="title">Phim sắp chiếu</h1>
 

@@ -112,7 +112,7 @@ function CinemasGroup() {
 	const data = theaterContent?.danhSachRap;
 
 	return (
-		<div className="CinemasGroup">
+		<div className="CinemasGroup" id="cinemasGroup">
 			<div className="container">
 				<h1>Hệ thống rạp chiếu phim</h1>
 				<h3>Danh sách các rạp chiếu phim lớn nhất cả nước</h3>

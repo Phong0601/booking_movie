@@ -73,7 +73,7 @@ function NowShowingMovie() {
 	};
 
 	return (
-		<div className="NowShowingMovie">
+		<div className="NowShowingMovie" id="nowShowing">
 			<h1 className="title">Phim đang chiếu</h1>
 
 			<Slider {...settings} className="container">

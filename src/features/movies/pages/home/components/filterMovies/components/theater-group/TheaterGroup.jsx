@@ -105,7 +105,7 @@ const TheaterGroup = (props) => {
 				<Layout.Sider
 					onBreakpoint={(borken) => {}}
 					onCollapse={(collapsed, type) => {
-						console.log(collapsed, type);
+						// console.log(collapsed, type);
 					}}
 					width={300}
 					collapsedWidth="0"
