@@ -226,7 +226,7 @@ function SignUp() {
 
 						<div className="form-group">
 							<div className="form-body">
-								<label htmlFor="">Email:</label>
+								<label htmlFor="">Số điện thoại:</label>
 								<Input
 									name="soDt"
 									onChange={formik.handleChange}

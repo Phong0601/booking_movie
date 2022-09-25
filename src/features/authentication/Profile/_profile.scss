@@ -1,47 +1,119 @@
 .Profile {
 	padding: 30px 0;
 	.content-info {
-		width: 40%;
 		margin: 0 auto;
-		border: 1px solid rgb(210, 209, 209);
 		border-radius: 10px;
 		overflow: hidden;
 
-		h3 {
-			background-color: #b9d8f7;
-			padding: 10px;
-			text-align: center;
-			color: black;
-			font-size: 20px;
-		}
-		.form {
-			padding: 20px;
-			.form-group {
-				display: flex;
-				justify-content: flex-end;
-				align-items: center;
-				flex-wrap: wrap;
+		.content-left {
+			border: 1px solid rgb(210, 209, 209);
+
+			h3 {
+				background-color: #b9d8f7;
 				padding: 10px;
+				text-align: center;
+				color: black;
+				font-size: 20px;
+			}
+			.form {
+				padding: 20px;
+				width: 60%;
+				margin: 0 auto;
+				.form-group {
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					flex-wrap: wrap;
+					padding: 10px;
 
-				label {
-					width: 25%;
-				}
-				.input {
-					width: 75%;
+					label {
+						width: 25%;
+					}
+					.input {
+						width: 75%;
+					}
+
+					.errorText {
+						color: red;
+						margin: 0;
+					}
 				}
 
-				.errorText {
-					color: red;
-					margin: 0;
+				.btn-handle {
+					margin-top: 20px;
+					text-align: center;
+
+					.btn-submit {
+						margin-right: 15px;
+					}
 				}
 			}
+		}
+		.content-right {
+			border: 1px solid rgb(210, 209, 209);
 
-			.btn-handle {
-				margin-top: 20px;
+			h3 {
+				background-color: #b9d8f7;
+				padding: 10px;
 				text-align: center;
+				color: black;
+				font-size: 20px;
+			}
 
-				.btn-submit {
-					margin-right: 15px;
+			.ticket-group {
+				margin: 50px;
+				padding: 50px;
+				border: 1px solid rgb(252, 174, 174);
+
+				.info {
+					display: flex;
+					// flex-wrap: wrap;
+					.left {
+						img {
+							width: 100px;
+							height: 150px;
+							object-fit: cover;
+							border-radius: 5px;
+						}
+					}
+
+					.right {
+						width: 60%;
+						margin-left: 50px;
+						.group {
+							display: flex;
+							.title {
+								width: 40%;
+								font-weight: bold;
+							}
+							.data {
+								width: 60%;
+							}
+						}
+					}
+				}
+
+				.seat {
+					margin-top: 10px;
+					text-align: center;
+
+					h4 {
+						font-size: 18px;
+						font-weight: bold;
+					}
+					.table {
+						border: none;
+						width: 100%;
+						font-size: 16px;
+						th {
+							background-color: #cad8fa;
+							padding: 5px;
+						}
+						td {
+							background-color: #f0e7da;
+							padding: 5px;
+						}
+					}
 				}
 			}
 		}
@@ -51,9 +123,24 @@
 @media only screen and (max-width: 768px) {
 	.Profile {
 		.content-info {
-			width: 60%;
-			.form {
-				padding: 5px;
+			.content-left {
+				.form {
+					width: 90%;
+				}
+			}
+
+			.content-right {
+				.ticket-group {
+					margin: 10px;
+					padding: 10px;
+					.info {
+						flex-wrap: wrap;
+						.right {
+							margin: 0 10px;
+							width: 80%;
+						}
+					}
+				}
 			}
 		}
 	}

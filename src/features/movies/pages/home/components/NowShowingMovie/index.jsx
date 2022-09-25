@@ -43,31 +43,6 @@ function NowShowingMovie() {
 		// arrows: false,
 		nextArrow: <SampleNextArrow />,
 		prevArrow: <SamplePrevArrow />,
-		appendDots: (dots) => (
-			<div
-				style={{
-					backgroundColor: "#ddd",
-					borderRadius: "10px",
-					padding: "10px",
-				}}
-			>
-				<ul style={{ margin: "0px" }}> {dots} </ul>
-			</div>
-		),
-		customPaging: (i) => (
-			<div
-				style={{
-					lineHeight: "30px",
-					width: "30px",
-					height: "30px",
-					borderRadius: "50%",
-					color: "blue",
-					border: "1px blue solid",
-				}}
-			>
-				{i + 1}
-			</div>
-		),
 
 		responsive: [
 			{
@@ -99,21 +74,19 @@ function NowShowingMovie() {
 
 	return (
 		<div className="NowShowingMovie">
-			<div className="container">
-				<h1 className="title">Phim đang chiếu</h1>
+			<h1 className="title">Phim đang chiếu</h1>
 
-				<Slider {...settings}>
-					{showingMovie?.map((item) => {
-						return (
-							<ShowingMovieItem
-								key={item.maPhim}
-								className="showingMovieItem"
-								item={item}
-							/>
-						);
-					})}
-				</Slider>
-			</div>
+			<Slider {...settings} className="container">
+				{showingMovie?.map((item) => {
+					return (
+						<ShowingMovieItem
+							key={item.maPhim}
+							className="showingMovieItem"
+							item={item}
+						/>
+					);
+				})}
+			</Slider>
 		</div>
 	);
 }

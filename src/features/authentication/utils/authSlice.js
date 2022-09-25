@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
 	fetchProfileAction,
 	fetchUpdateProfileAction,
+	fetchUserAction,
 	signInAction,
 } from "./authAction";
 
 const initialState = {
 	profile: null,
+	user: null,
 };
 
 const authSlice = createSlice({
@@ -25,9 +27,9 @@ const authSlice = createSlice({
 			state.profile = action.payload;
 		});
 
-		// Update profile
-		builder.addCase(fetchUpdateProfileAction.fulfilled, (state, action) => {
-			state.profile = action.payload;
+		// Get user
+		builder.addCase(fetchUserAction.fulfilled, (state, action) => {
+			state.user = action.payload;
 		});
 	},
 });

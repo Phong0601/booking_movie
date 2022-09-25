@@ -38,6 +38,8 @@
 
 // Profile --by Hung
 @import "features/authentication/Profile/profile";
+// Update user
+@import "features/authentication/Profile/components/UpdateUser/updateUser";
 // Comment --by Hung
 @import "features/movies/pages/detail/components/MovieBody/components/UserComment/comment";
 

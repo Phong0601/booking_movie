@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { fetchProfileAction } from "features/authentication/utils/authAction";
 import Profile from "features/authentication/Profile";
 import Footer from "common/components/Footer";
+import UpdateUser from "features/authentication/Profile/components/UpdateUser";
 
 function App() {
 	// maintain my account --by Hung
@@ -26,7 +27,7 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchProfileAction());
 	}, []);
-	
+
 	return (
 		<div>
 			<Router>
@@ -39,6 +40,7 @@ function App() {
 					<Route path="/signin" component={SignIn} />
 					<Route path="/signup" component={SignUp} />
 					<Route path="/profile" component={Profile} />
+					<Route path="/update-user" component={UpdateUser} />
 				</Switch>
 				<Footer />
 			</Router>

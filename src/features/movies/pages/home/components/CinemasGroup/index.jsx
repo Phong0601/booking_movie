@@ -80,7 +80,7 @@ function CinemasGroup() {
 		fetchTheaterList();
 	}, [theaterContent]);
 
-	//
+	// change theater
 	const handleChangeTheater = (theater) => {
 		setTheaterContent(theater);
 	};
@@ -88,9 +88,8 @@ function CinemasGroup() {
 	if (!newListTheater) return <Spin size="large" />;
 	if (!theaterGroup) return <Spin size="large" />;
 
-	console.log(theaterContent);
+	// console.log(theaterContent);
 	// Setting table antd
-
 	const columns = [
 		{
 			title: "STT",

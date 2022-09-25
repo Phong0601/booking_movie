@@ -3,9 +3,20 @@
 	padding-bottom: 3.5rem;
 	.container {
 		position: relative;
+		overflow-x: hidden;
+		overflow-y: hidden;
 		.title {
 			text-align: center;
 			@extend .title-pink-1;
+		}
+
+		.slider {
+			.slick-dots {
+				height: 50px;
+				bottom: -50px;
+				// border: 1px solid blue;
+				position: unset;
+			}
 		}
 
 		.next-arrow {

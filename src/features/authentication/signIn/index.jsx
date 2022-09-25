@@ -21,7 +21,7 @@ function SignIn() {
 	};
 
 	const goBackPage = () => {
-		history.goBack();
+		history.push("/");
 	};
 
 	const dispatch = useDispatch();

@@ -8,7 +8,9 @@
 	background-color: black;
 
 	.container {
-		position: relative;
+		overflow-x: hidden;
+		overflow-y: hidden;
+
 		.title {
 			text-align: center;
 			color: white;

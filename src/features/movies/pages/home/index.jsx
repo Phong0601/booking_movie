@@ -14,11 +14,11 @@ const Home = () => {
 	return (
 		<div>
 			{/* <Banner /> */}
-			{/* <NowShowingMovie /> */}
+			<NowShowingMovie />
 			{/* <UpcomingMovie /> */}
 			{/* <FilterMovies /> */}
 			{/* <Trailer /> */}
-			<CinemasGroup />
+			{/* <CinemasGroup /> */}
 		</div>
 	);
 };

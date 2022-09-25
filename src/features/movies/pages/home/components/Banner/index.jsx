@@ -30,13 +30,12 @@ function Banner() {
 	}
 
 	const settings = {
-		
 		dots: true,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		autoplay: true,
+		autoplay: false,
 		autoplaySpeed: 2000,
 	};
 
@@ -69,8 +68,7 @@ function Banner() {
 										<CheckCircleOutlined
 											style={{
 												fontSize: 24,
-												color: '#A50064',
-												
+												color: "#A50064",
 											}}
 										/>
 										<div className="item-text">

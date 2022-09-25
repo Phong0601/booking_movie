@@ -62,10 +62,22 @@ export const fetchUpdateProfileAction = createAsyncThunk(
 				data: user,
 			});
 
-			// console.log(res.data);
+			console.log(res.data);
 			return res.data.content;
 		} catch (err) {
 			console.log("khong thanh cong");
 		}
 	}
 );
+
+//// Get user info for ThongTinDatVe
+export const fetchUserAction = createAsyncThunk("auth/fetchUser", async () => {
+	try {
+		const res = await instance.request({
+			url: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+			method: "POST",
+		});
+		// console.log(res.data.content);
+		return res.data.content;
+	} catch (err) {}
+});
