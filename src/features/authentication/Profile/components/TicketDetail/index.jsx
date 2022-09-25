@@ -32,7 +32,6 @@ function TicketDetail() {
 
 	return (
 		<div>
-			{console.log(userInfo)}
 			<div className="content-right">
 				<h3>Chi tiết đặt vé</h3>
 				{userInfo?.thongTinDatVe.map((item) => {

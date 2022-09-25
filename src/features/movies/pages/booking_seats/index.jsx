@@ -7,6 +7,7 @@ import InfoBooking from "./components/InfoBooking/InfoBooking";
 import "./booking.scss";
 import el from "date-fns/esm/locale/el/index.js";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Swal from "sweetalert2";
 
 const Booking = () => {
 	const matchIdTheater = useRouteMatch();
@@ -82,8 +83,32 @@ const Booking = () => {
 
 	const handleBooked = () => {
 		if (seatSelected.length > 0) {
-			postBookedTicked(ticket);
-			setSeatSelected([]);
+			Swal.fire({
+				title: "Bạn có muốn đặt vé không ?",
+				text: "Nếu đã đặt, bạn sẽ không thể hồi lại !",
+				icon: "info",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				cancelButtonText: "Hủy",
+				confirmButtonText: "Đặt vé!",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: "Đặt vé thành công !",
+						text: "Gặp lại bạn sau!",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+
+					// Action
+					postBookedTicked(ticket);
+					setSeatSelected([]);
+					history.push("/");
+				}
+			});
 		}
 	};
 
