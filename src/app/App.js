@@ -3,8 +3,7 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	useRouteMatch,
-	useHistory,
+	
 } from "react-router-dom";
 import Home from "features/movies/pages/home";
 import Detail from "features/movies/pages/detail";

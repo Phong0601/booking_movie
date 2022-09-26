@@ -4,7 +4,7 @@ import sortBy from "lodash.sortby";
 import "./SeatBooking.scss";
 console.log();
 const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelected }) => {
-	console.log(infoMovie);
+	
 	const checked = useRef([]);
 	const handleEvent = (value, index) => {
 		selectSeat(value);

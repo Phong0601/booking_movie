@@ -7,7 +7,7 @@ import InfoBooking from "./components/InfoBooking/InfoBooking";
 import "./booking.scss";
 import el from "date-fns/esm/locale/el/index.js";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import Swal from "sweetalert2";
 const Booking = () => {
   const matchIdTheater = useRouteMatch();
   const [loading, setLoadding] = useState(false);
@@ -23,9 +23,9 @@ const Booking = () => {
     danhSachVe: [...seatSelected],
   };
 
-  const goOut = ()=>{
+  const goOut = () => {
     setTimeout(goToHome, 20000);
-  }
+  };
   const fetchSeatBooking = async (idTheater) => {
     try {
       setLoadding(true);
@@ -36,9 +36,7 @@ const Booking = () => {
           MaLichChieu: idTheater,
         },
       });
-
       setLoadding(false);
-      goOut()
       setData(await res.data.content);
     } catch (error) {
       console.log(error);
@@ -60,10 +58,19 @@ const Booking = () => {
         data: ticket,
       });
       setLoadding(false);
-      goToHome();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Đặt vé thành công !",
+        text: "Tiếp Tục Chọn Phim Nào !",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setTimeout(goToHome, 2000);
       // fetchSeatBooking(matchIdTheater.params.id);
     } catch (error) {}
   };
+
   useEffect(() => {
     fetchSeatBooking(matchIdTheater.params.id);
   }, []);
@@ -83,20 +90,27 @@ const Booking = () => {
     if (seatSelected.length > 0) {
       postBookedTicked(ticket);
       setSeatSelected([]);
+      return;
     }
+    return Swal.fire({
+      title: "Chọn Ghế Nhé!",
+      text: "Vui Lòng Chọn Ghế !",
+      icon: "warning",
+      showConfirmButton: false,
+      timer: 1200,
+    });
   };
 
   return (
     <div className="booking">
       <div className="container">
-        <Row >
+        <Row>
           <Col
             style={{ marginBottom: "200px" }}
             span={18}
             sm={{ span: 24 }}
             xs={{ span: 24 }}
             lg={{ span: 18 }}
-            
           >
             <div className="container__seat">
               {data ? (
@@ -113,7 +127,7 @@ const Booking = () => {
             </div>
           </Col>
           <Col span={6} sm={{ span: 24 }} xs={{ span: 24 }} md={{ span: 6 }}>
-            <div  style={{padding:'0 10px'}} className="container__info">
+            <div style={{ padding: "0 10px" }} className="container__info">
               {data ? (
                 <InfoBooking
                   handleBooked={handleBooked}

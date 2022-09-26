@@ -45,7 +45,7 @@ function SignIn() {
 				text: "Sai tài khoản hoặc mật khẩu, vui lòng nhập lại !",
 				icon: "error",
 				showConfirmButton: false,
-				timer: 1200,
+				timer: 1500,
 			});
 			return;
 		} else {
