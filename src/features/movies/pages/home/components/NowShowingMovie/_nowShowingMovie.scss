@@ -7,8 +7,16 @@
 	background-size: contain;
 	background-color: black;
 
+	h1 {
+		text-align: center;
+		color: white;
+		padding-bottom: 20px;
+	}
+
 	.container {
-		position: relative;
+		overflow-x: hidden;
+		overflow-y: hidden;
+
 		.title {
 			text-align: center;
 			color: white;

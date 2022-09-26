@@ -22,6 +22,8 @@
 @import "features/movies/pages/home/components/Trailer/trailer";
 // Home -> TrailerItem --by Hung
 @import "features/movies/pages/home/components/Trailer/components/TrailerItem/trailerItem";
+// Home --> CinemasGroup --by Hung
+@import "features/movies/pages/home/components/CinemasGroup/cinemasGroup";
 
 // Detail  --by Hung
 @import "features/movies/pages/detail/detail";
@@ -36,9 +38,12 @@
 
 // Profile --by Hung
 @import "features/authentication/Profile/profile";
+// Update user
+@import "features/authentication/Profile/components/UpdateUser/updateUser";
 // Comment --by Hung
 @import "features/movies/pages/detail/components/MovieBody/components/UserComment/comment";
-
+// Scroll to top
+@import "features/movies/components/ScrollToTop/scrollToTop";
 // Footer
 @import "common/components/Footer/footer";
 

@@ -9,19 +9,19 @@ import el from "date-fns/esm/locale/el/index.js";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Swal from "sweetalert2";
 const Booking = () => {
-  const matchIdTheater = useRouteMatch();
-  const [loading, setLoadding] = useState(false);
-  const [data, setData] = useState(null);
-  const [seatSelected, setSeatSelected] = useState([]);
+	const matchIdTheater = useRouteMatch();
+	const [loading, setLoadding] = useState(false);
+	const [data, setData] = useState(null);
+	const [seatSelected, setSeatSelected] = useState([]);
 
-  const history = useHistory();
-  const goToHome = () => {
-    history.push("/");
-  };
-  const ticket = {
-    maLichChieu: matchIdTheater.params.id,
-    danhSachVe: [...seatSelected],
-  };
+	const history = useHistory();
+	const goToHome = () => {
+		history.push("/");
+	};
+	const ticket = {
+		maLichChieu: matchIdTheater.params.id,
+		danhSachVe: [...seatSelected],
+	};
 
   const goOut = () => {
     setTimeout(goToHome, 20000);
@@ -44,11 +44,7 @@ const Booking = () => {
       setLoadding(false);
     }
   };
-  // const clear = () => {
-  //   console.log('click');
-  //   clearTimeout(go);
-
-  // };
+ 
   const postBookedTicked = async (ticket) => {
     try {
       setLoadding(true);

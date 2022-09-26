@@ -21,11 +21,13 @@ import {
 	theaterSelector,
 } from "./utils/detailSelector";
 
+import ScrollToTop from "features/movies/components/ScrollToTop";
+
 const Detail = () => {
 	const dispatch = useDispatch();
 	const match = useRouteMatch();
 	const movieId = match.params.id;
-	console.log(match);
+
 	//// received data
 	const selectedMovie = useSelector(selectedMovieSelector);
 	const theater = useSelector(theaterSelector);
@@ -94,6 +96,7 @@ const Detail = () => {
 
 	return (
 		<div className="Detail">
+			<ScrollToTop />
 			<MovieInfo selectedMovie={selectedMovie} />
 			<MovieBody
 				selectedMovie={selectedMovie}

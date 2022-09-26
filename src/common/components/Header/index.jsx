@@ -11,10 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProfileAction } from "features/authentication/utils/authAction";
 import logoSonic from "../../../assets/img/icon/logo-sonic.png";
 import Swal from "sweetalert2";
+import { Link } from "react-scroll";
 
 const Header = () => {
 	const [current, setCurrent] = useState("");
 	const dispatch = useDispatch();
+	//
 
 	// go to Sign In --by Hung
 	const history = useHistory();
@@ -74,6 +76,7 @@ const Header = () => {
 		if (e.key === "6") {
 			logout();
 		}
+		// Scroll element
 	};
 
 	const items = [
@@ -83,15 +86,15 @@ const Header = () => {
 			icon: <HomeOutlined />,
 			children: [
 				{
-					label: "CGV",
+					label: <Link to="cinemasGroup">CGV</Link>,
 					key: "1",
 				},
 				{
-					label: "GALAXY",
+					label: <Link to="cinemasGroup">GALAXY</Link>,
 					key: "2",
 				},
 				{
-					label: "CineStar",
+					label: <Link to="cinemasGroup">CINE STAR</Link>,
 					key: "7",
 				},
 				{
@@ -111,14 +114,14 @@ const Header = () => {
 		{
 			label: "Lịch Chiếu",
 			key: "sub-2",
-			icon: <CalendarOutlined />,	
+			icon: <CalendarOutlined />,
 			children: [
 				{
-					label: "Phim Đang Chiếu",
+					label: <Link to="nowShowing">Phim Đang Chiếu</Link>,
 					key: "3",
 				},
 				{
-					label: "Phim Sắp Chiếu",
+					label: <Link to="upComing">Phim Sắp Chiếu</Link>,
 					key: "4",
 				},
 			],

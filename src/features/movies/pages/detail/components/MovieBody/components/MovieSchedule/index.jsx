@@ -42,9 +42,31 @@ function MovieSchedule(props) {
 		),
 	}));
 
+	// Render logo to get logo for label item2
+	const renderLogo = () => {
+		let logoDefault;
+		if (!currentTheater) {
+			logoDefault = null;
+		} else {
+			logoDefault = currentTheater.logo;
+		}
+		return logoDefault;
+	};
+
 	const items2 = currentTheater?.cumRapChieu.map((theater, index) => ({
 		key: index,
-		label: `${theater.tenCumRap}`,
+		label: (
+			<div className="btn-header">
+				<img
+					className="logo-theater"
+					width={30}
+					style={{ marginRight: 10 }}
+					src={renderLogo()}
+					alt=""
+				/>
+				{theater.tenCumRap}
+			</div>
+		),
 	}));
 
 	//// Create Schedule Content  ---

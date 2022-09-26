@@ -5,40 +5,68 @@ import {
 	Route,
 	
 } from "react-router-dom";
-import Home from "features/movies/pages/home";
-import Detail from "features/movies/pages/detail";
-import Payment from "features/movies/pages/payment";
-import Booking from "features/movies/pages/booking_seats";
+
 import Header from "common/components/Header";
-import SignIn from "features/authentication/SignIn";
-import SignUp from "features/authentication/SignUp";
+
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { fetchProfileAction } from "features/authentication/utils/authAction";
-import Profile from "features/authentication/Profile";
+
 import Footer from "common/components/Footer";
+import { PrivateRoute } from "./Guard";
+
+////
+const Home = lazy(() => import("features/movies/pages/home"));
+const Detail = lazy(() => import("features/movies/pages/detail"));
+const Payment = lazy(() => import("features/movies/pages/payment"));
+const Booking = lazy(() => import("features/movies/pages/booking_seats"));
+const SignIn = lazy(() => import("features/authentication/SignIn"));
+const SignUp = lazy(() => import("features/authentication/SignUp"));
+const Profile = lazy(() => import("features/authentication/Profile"));
+const UpdateUser = lazy(() =>
+	import("features/authentication/Profile/components/UpdateUser")
+);
 
 function App() {
 	// maintain my account --by Hung
-
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(fetchProfileAction());
 	}, []);
-	
+
 	return (
 		<div>
 			<Router>
 				<Header />
-				<Switch>
-					<Route path="/" component={Home} exact />
-					<Route path="/detail/:id/:slug" component={Detail} />
-					<Route path="/booking/:id" component={Booking} />
-					<Route path="/payment" component={Payment} />
-					<Route path="/signin" component={SignIn} />
-					<Route path="/signup" component={SignUp} />
-					<Route path="/profile" component={Profile} />
-				</Switch>
+				<Suspense
+					fallback={
+						<div style={{ textAlign: "center" }}>Đang tải...</div>
+					}
+				>
+					<Switch>
+						<Route path="/" component={Home} exact />
+						<Route path="/detail/:id/:slug" component={Detail} />
+						<Route path="/booking/:id" component={Booking} />
+						<PrivateRoute
+							path="/payment"
+							component={Payment}
+							redirectPath="/signin"
+						/>
+						<Route path="/signin" component={SignIn} />
+						<Route path="/signup" component={SignUp} />
+						<PrivateRoute
+							path="/profile"
+							component={Profile}
+							redirectPath="/signin"
+						/>
+						<PrivateRoute
+							path="/update-user"
+							component={UpdateUser}
+							redirectPath="/signin"
+						/>
+					</Switch>
+				</Suspense>
+
 				<Footer />
 			</Router>
 		</div>

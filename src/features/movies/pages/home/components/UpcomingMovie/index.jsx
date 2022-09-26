@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { fetchMovieListAction } from "../../utils/homeAction";
 import { movieListSelector } from "../../utils/homeSelector";
+import SampleNextArrow from "../SliderArrow/SampleNextArrow";
+import SamplePrevArrow from "../SliderArrow/SamplePrevArrow";
 import UpcomingMovieItem from "./components/UpcomingMovieItem";
 
 function UpcomingMovie() {
@@ -38,7 +40,10 @@ function UpcomingMovie() {
 		slidesToScroll: 5,
 		autoplay: false,
 		autoplaySpeed: 2000,
-		arrows: false,
+		// arrows: false,
+		nextArrow: <SampleNextArrow />,
+		prevArrow: <SamplePrevArrow />,
+
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -68,22 +73,9 @@ function UpcomingMovie() {
 	};
 
 	return (
-		<div className="UpcomingMovie">
+		<div className="UpcomingMovie" id="upComing">
 			<div className="container">
 				<h1 className="title">Phim sắp chiếu</h1>
-
-				<div
-					className="next-arrow"
-					onClick={() => slider?.current.slickNext()}
-				>
-					<RightOutlined style={{ color: "black" }} />
-				</div>
-				<div
-					className="prev-arrow"
-					onClick={() => slider?.current.slickPrev()}
-				>
-					<LeftOutlined style={{ color: "black" }} />
-				</div>
 
 				<Slider className="slider" ref={slider} {...settings}>
 					{upcomingMovie?.map((item) => {
