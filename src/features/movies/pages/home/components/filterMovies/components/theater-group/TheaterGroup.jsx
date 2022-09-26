@@ -39,11 +39,12 @@ const TheaterGroup = (props) => {
 	//setup Menu.Item ANTD recommended, slider--menu
 	const items2 = movieTheaterMovie[0].lstCumRap.map(
 		(theaterGroup, index) => ({
+		
 			label: (
 				<div className="sider--items">
 					<div className="sider--img">
 						{" "}
-						<img width={60} src={theaterGroup.logo} />
+						<img width={60} src={movieTheaterMovie[0].logo} />
 					</div>
 					<div className="theater--name">
 						<p style={{ display: "inline" }}>
@@ -109,7 +110,7 @@ const TheaterGroup = (props) => {
 					}}
 					width={300}
 					collapsedWidth="0"
-					breakpoint="lg"
+					breakpoint="md"
 					className=" ant-layout-sider ant-layout-sider-light sider"
 				>
 					<Menu

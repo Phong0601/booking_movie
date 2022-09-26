@@ -8,9 +8,7 @@
 	height: 13rem;
 	border: 1px solid orange;
 	border-radius: 10px 10px 0 0;
-	@include mobile-md {
-		flex-direction: column;
-	}
+
 	.logo {
 		width: 20%;
 		display: flex;
@@ -50,7 +48,7 @@
 	padding: 0 !important;
 
 	.sider {
-		overflow-y: auto;
+		  overflow-y: auto;
 
 		.sider--menu {
 			.ant-menu-item {
@@ -100,6 +98,8 @@
 		}
 	}
 }
+
+
 // .cover {
 //   height: 100vh;
 //   border: 1px solid orange;
