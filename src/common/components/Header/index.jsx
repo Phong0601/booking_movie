@@ -118,11 +118,19 @@ const Header = () => {
 			children: [
 				{
 					label: <Link to="nowShowing">Phim Đang Chiếu</Link>,
-					key: "3",
+					key: "child-1",
 				},
 				{
 					label: <Link to="upComing">Phim Sắp Chiếu</Link>,
-					key: "4",
+					key: "child-2",
+				},
+				{
+					label: <Link to="filterMovieId">Lịch Chiếu Theo Rạp</Link>,
+					key: "child-3",
+				},
+				{
+					label: <Link to="trailerId">Trailer Mới Nhất</Link>,
+					key: "child-4",
 				},
 			],
 		},

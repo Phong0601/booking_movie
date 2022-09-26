@@ -72,7 +72,7 @@ function Trailer() {
 	};
 
 	return (
-		<div className="Trailer">
+		<div className="Trailer" id="trailerId">
 			<div className="container">
 				<h1 className="title">Trailer mới nhất</h1>
 

@@ -16,7 +16,10 @@ function MovieListColumn(props) {
 		dots: false,
 		infinite: true,
 		slidesToShow: 5,
-		slidesToScroll: 5,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 2000,
+		arrows: false,
 		vertical: true,
 		verticalSwiping: true,
 	};
@@ -35,7 +38,7 @@ function MovieListColumn(props) {
 	return (
 		<div className="MovieListColumn">
 			<h2>Phim đang chiếu</h2>
-			<Slider {...settings}>
+			<Slider {...settings} className="slider-list-column">
 				{showingMovie?.map((item) => {
 					return (
 						<div key={item.maPhim} className="movie-slider">

@@ -38,7 +38,7 @@ function UpcomingMovie() {
 		speed: 500,
 		slidesToShow: 5,
 		slidesToScroll: 5,
-		autoplay: false,
+		autoplay: true,
 		autoplaySpeed: 2000,
 		// arrows: false,
 		nextArrow: <SampleNextArrow />,

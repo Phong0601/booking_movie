@@ -22,6 +22,7 @@ import {
 import Swal from "sweetalert2";
 import { formatDateString } from "common/utils/dateString";
 import TicketDetail from "./components/TicketDetail";
+import ScrollToTop from "features/movies/components/ScrollToTop";
 
 function Profile() {
 	// dispatch to update Profile
@@ -48,6 +49,7 @@ function Profile() {
 	return (
 		<div className="Profile">
 			{/* {console.log(selectedUser.hoTen)} */}
+			<ScrollToTop />
 			<div className="container">
 				<div className="content-info">
 					<Row>
