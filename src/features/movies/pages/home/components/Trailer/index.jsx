@@ -38,7 +38,7 @@ function Trailer() {
 		speed: 500,
 		slidesToShow: 4,
 		slidesToScroll: 4,
-		autoplay: false,
+		autoplay: true,
 		autoplaySpeed: 2000,
 		nextArrow: <SampleNextArrow />,
 		prevArrow: <SamplePrevArrow />,
