@@ -23,123 +23,131 @@ const Booking = () => {
 		danhSachVe: [...seatSelected],
 	};
 
-  const goOut = () => {
-    setTimeout(goToHome, 20000);
-  };
-  const fetchSeatBooking = async (idTheater) => {
-    try {
-      setLoadding(true);
-      const res = await instance.request({
-        url: "/api/QuanLyDatVe/LayDanhSachPhongVe",
-        method: "GET",
-        params: {
-          MaLichChieu: idTheater,
-        },
-      });
-      setLoadding(false);
-      setData(await res.data.content);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoadding(false);
-    }
-  };
- 
-  const postBookedTicked = async (ticket) => {
-    try {
-      setLoadding(true);
-      const res = await instance.request({
-        url: "/api/QuanLyDatVe/DatVe",
-        method: "POST",
-        data: ticket,
-      });
-      setLoadding(false);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Đặt vé thành công !",
-        text: "Tiếp Tục Chọn Phim Nào !",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setTimeout(goToHome, 2000);
-      // fetchSeatBooking(matchIdTheater.params.id);
-    } catch (error) {}
-  };
+	const goOut = () => {
+		setTimeout(goToHome, 20000);
+	};
+	const fetchSeatBooking = async (idTheater) => {
+		try {
+			setLoadding(true);
+			const res = await instance.request({
+				url: "/api/QuanLyDatVe/LayDanhSachPhongVe",
+				method: "GET",
+				params: {
+					MaLichChieu: idTheater,
+				},
+			});
+			setLoadding(false);
+			setData(await res.data.content);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoadding(false);
+		}
+	};
 
-  useEffect(() => {
-    fetchSeatBooking(matchIdTheater.params.id);
-  }, []);
-  if (loading) return <Spin className="spin" size="large"></Spin>;
-  const selectSeat = (idSeat) => {
-    const found = data?.danhSachGhe.find((seat) => seat.maGhe == idSeat);
-    if (found !== -1) {
-      const clone = [...seatSelected];
-      const index = clone.findIndex((seat) => seat.maGhe == found.maGhe);
-      if (index !== -1) clone.splice(index, 1);
-      if (index === -1) clone.push(found);
-      setSeatSelected(clone);
-    }
-  };
+	const postBookedTicked = async (ticket) => {
+		try {
+			setLoadding(true);
+			const res = await instance.request({
+				url: "/api/QuanLyDatVe/DatVe",
+				method: "POST",
+				data: ticket,
+			});
+			setLoadding(false);
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Đặt vé thành công !",
+				text: "Tiếp Tục Chọn Phim Nào !",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			setTimeout(goToHome, 2000);
+			// fetchSeatBooking(matchIdTheater.params.id);
+		} catch (error) {}
+	};
 
-  const handleBooked = () => {
-    if (seatSelected.length > 0) {
-      postBookedTicked(ticket);
-      setSeatSelected([]);
-      return;
-    }
-    return Swal.fire({
-      title: "Chọn Ghế Nhé!",
-      text: "Vui Lòng Chọn Ghế !",
-      icon: "warning",
-      showConfirmButton: false,
-      timer: 1200,
-    });
-  };
+	useEffect(() => {
+		fetchSeatBooking(matchIdTheater.params.id);
+	}, []);
+	if (loading) return <Spin className="spin" size="large"></Spin>;
+	const selectSeat = (idSeat) => {
+		const found = data?.danhSachGhe.find((seat) => seat.maGhe == idSeat);
+		if (found !== -1) {
+			const clone = [...seatSelected];
+			const index = clone.findIndex((seat) => seat.maGhe == found.maGhe);
+			if (index !== -1) clone.splice(index, 1);
+			if (index === -1) clone.push(found);
+			setSeatSelected(clone);
+		}
+	};
 
-  return (
-    <div className="booking">
-      <div className="container">
-        <Row>
-          <Col
-            style={{ marginBottom: "200px" }}
-            span={18}
-            sm={{ span: 24 }}
-            xs={{ span: 24 }}
-            lg={{ span: 18 }}
-          >
-            <div className="container__seat">
-              {data ? (
-                <SeatBooking
-                  handleBooked={handleBooked}
-                  seatSelected={seatSelected}
-                  infoMovie={data.thongTinPhim}
-                  selectSeat={selectSeat}
-                  seatList={data.danhSachGhe}
-                />
-              ) : (
-                true
-              )}
-            </div>
-          </Col>
-          <Col span={6} sm={{ span: 24 }} xs={{ span: 24 }} md={{ span: 6 }}>
-            <div style={{ padding: "0 10px" }} className="container__info">
-              {data ? (
-                <InfoBooking
-                  handleBooked={handleBooked}
-                  seatSelected={seatSelected}
-                  selectSeat={selectSeat}
-                  infoMovie={data.thongTinPhim}
-                />
-              ) : (
-                true
-              )}
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </div>
-  );
+	const handleBooked = () => {
+		if (seatSelected.length > 0) {
+			postBookedTicked(ticket);
+			setSeatSelected([]);
+			return;
+		}
+		return Swal.fire({
+			title: "Chọn Ghế Nhé!",
+			text: "Vui Lòng Chọn Ghế !",
+			icon: "warning",
+			showConfirmButton: false,
+			timer: 1200,
+		});
+	};
+
+	return (
+		<div className="booking">
+			<div className="container">
+				<Row>
+					<Col
+						style={{ marginBottom: "200px" }}
+						span={18}
+						sm={{ span: 24 }}
+						xs={{ span: 24 }}
+						lg={{ span: 18 }}
+					>
+						<div className="container__seat">
+							{data ? (
+								<SeatBooking
+									handleBooked={handleBooked}
+									seatSelected={seatSelected}
+									infoMovie={data.thongTinPhim}
+									selectSeat={selectSeat}
+									seatList={data.danhSachGhe}
+								/>
+							) : (
+								true
+							)}
+						</div>
+					</Col>
+					<Col
+						span={6}
+						sm={{ span: 24 }}
+						xs={{ span: 24 }}
+						md={{ span: 6 }}
+					>
+						<div
+							style={{ padding: "0 10px" }}
+							className="container__info"
+						>
+							{data ? (
+								<InfoBooking
+									handleBooked={handleBooked}
+									seatSelected={seatSelected}
+									selectSeat={selectSeat}
+									infoMovie={data.thongTinPhim}
+								/>
+							) : (
+								true
+							)}
+						</div>
+					</Col>
+				</Row>
+			</div>
+		</div>
+	);
 };
 
 export default Booking;

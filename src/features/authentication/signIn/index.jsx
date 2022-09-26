@@ -93,7 +93,7 @@ function SignIn() {
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						className="input"
-						type="text"
+						type="password"
 						placeholder="Password"
 						prefix={<LockOutlined style={{ marginRight: 8 }} />}
 					/>
