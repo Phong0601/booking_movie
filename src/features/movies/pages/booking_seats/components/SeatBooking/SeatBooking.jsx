@@ -3,13 +3,8 @@ import { Card, Spin, Row, Col, Button } from "antd";
 import sortBy from "lodash.sortby";
 import "./SeatBooking.scss";
 console.log();
-const SeatBooking = ({
-	seatList,
-	infoMovie,
-	selectSeat,
-	handleBooked,
-	seatSelected,
-}) => {
+const SeatBooking = ({ seatList, infoMovie, selectSeat,handleBooked, seatSelected }) => {
+	
 	const checked = useRef([]);
 	const handleEvent = (value, index) => {
 		console.log({ value }, { index });

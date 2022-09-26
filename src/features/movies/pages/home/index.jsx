@@ -12,10 +12,17 @@ import ScrollToTop from "features/movies/components/ScrollToTop";
 const Home = () => {
 	return (
 		<div>
+<<<<<<< HEAD
+			<Banner />
+			<NowShowingMovie />
+			<UpcomingMovie />
+			<Trailer />
+=======
 			<ScrollToTop />
 			<Banner />
 			<NowShowingMovie />
 			<UpcomingMovie />
+>>>>>>> 25086ad5aa4bf8a10ad698e89aaf5f1a8d9793eb
 			<FilterMovies />
 			<Trailer />
 			<CinemasGroup />

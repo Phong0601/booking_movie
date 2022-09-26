@@ -3,8 +3,7 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	useRouteMatch,
-	useHistory,
+	
 } from "react-router-dom";
 
 import Header from "common/components/Header";
