@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { signUpAction } from "../utils/authAction";
+// import './_signUp.scss'
 
 const schema = yup.object({
 	taiKhoan: yup.string().required("*Trường này bắt buộc nhập !"),

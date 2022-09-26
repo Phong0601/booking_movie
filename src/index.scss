@@ -33,8 +33,8 @@
 // Detail -> MovieBody -> RateStar
 @import "features/movies/pages/detail/components/MovieBody/components/RateStar/rateStar";
 // SignUp  -- by Hung
-@import "features/authentication/SignUp/signUp";
-@import "features/authentication/SignIn/signIn";
+@import "features/authentication/signUp/signUp";
+@import "features/authentication/signIn/signIn";
 
 // Profile --by Hung
 @import "features/authentication/Profile/profile";
