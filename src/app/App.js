@@ -1,10 +1,5 @@
 import "../App.scss";
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "common/components/Header";
 
@@ -20,8 +15,8 @@ const Home = lazy(() => import("features/movies/pages/home"));
 const Detail = lazy(() => import("features/movies/pages/detail"));
 const Payment = lazy(() => import("features/movies/pages/payment"));
 const Booking = lazy(() => import("features/movies/pages/booking_seats"));
-const SignIn = lazy(() => import("features/authentication/signIn"));
-const SignUp = lazy(() => import("features/authentication/signUp"));
+const SignIn = lazy(() => import("features/authentication/SignIn"));
+const SignUp = lazy(() => import("features/authentication/SignUp"));
 const Profile = lazy(() => import("features/authentication/Profile"));
 const UpdateUser = lazy(() =>
 	import("features/authentication/Profile/components/UpdateUser")

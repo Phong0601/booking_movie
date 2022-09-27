@@ -1,6 +1,7 @@
 import { Spin } from "antd";
 import instance from "api/instance";
 import { formatDateString } from "common/utils/dateString";
+import { formatPriceVND } from "common/utils/formatPriceVND";
 import {
 	fetchProfileAction,
 	fetchUserAction,
@@ -29,6 +30,8 @@ function TicketDetail() {
 			</div>
 		);
 	}
+
+	const totalPrice = () => {};
 
 	return (
 		<div>
@@ -104,6 +107,20 @@ function TicketDetail() {
 											}
 										)}
 									</tbody>
+									<tfoot>
+										<tr>
+											<td colSpan={2}></td>
+											<td>Tổng tiền</td>
+											<td>
+												{formatPriceVND(
+													item.giaVe *
+														(item.danhSachGhe
+															.length +
+															1)
+												)}
+											</td>
+										</tr>
+									</tfoot>
 								</table>
 							</div>
 						</div>
