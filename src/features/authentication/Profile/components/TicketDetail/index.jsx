@@ -31,8 +31,6 @@ function TicketDetail() {
 		);
 	}
 
-	const totalPrice = () => {};
-
 	return (
 		<div>
 			<div className="content-right">
@@ -114,9 +112,7 @@ function TicketDetail() {
 											<td>
 												{formatPriceVND(
 													item.giaVe *
-														(item.danhSachGhe
-															.length +
-															1)
+														item.danhSachGhe.length
 												)}
 											</td>
 										</tr>

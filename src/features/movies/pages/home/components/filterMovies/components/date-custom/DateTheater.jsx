@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "antd";
 import { vi } from "date-fns/locale";
 import { format, getDate } from "date-fns";
-import "./DateTheater.scss";
+import "./_dateTheater.scss";
 const DateTheater = (props) => {
 	const { time, goToBooking } = props;
 	const { ngayChieuGioChieu, maLichChieu } = time;
