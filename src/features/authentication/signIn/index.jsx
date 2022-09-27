@@ -70,7 +70,7 @@ function SignIn() {
 		>
 			{/* {console.log(match.path)} */}
 			<div className="content-signin">
-				<h2 className="title">Sign In</h2>
+				<h2 className="title">Đăng Nhập</h2>
 				<UserOutlined className="icon-user" />
 
 				<form onSubmit={formik.handleSubmit} className="form">
@@ -80,7 +80,7 @@ function SignIn() {
 						onBlur={formik.handleBlur}
 						className="input"
 						type="text"
-						placeholder="Username"
+						placeholder="Tài khoản"
 						prefix={<UserOutlined style={{ marginRight: 8 }} />}
 					/>
 
@@ -94,7 +94,7 @@ function SignIn() {
 						onBlur={formik.handleBlur}
 						className="input"
 						type="password"
-						placeholder="Password"
+						placeholder="Mật khẩu"
 						prefix={<LockOutlined style={{ marginRight: 8 }} />}
 					/>
 					{formik.touched.matKhau && formik.errors.matKhau && (
@@ -102,10 +102,8 @@ function SignIn() {
 					)}
 
 					<div className="remember">
-						<Checkbox>Remember me</Checkbox>
-						<span className="forgot-password">
-							Forgot password ?
-						</span>
+						<Checkbox>Lưu đăng nhập</Checkbox>
+						<span className="forgot-password">Quên mật khẩu ?</span>
 					</div>
 
 					<Button
@@ -114,14 +112,14 @@ function SignIn() {
 						type="primary"
 						loading={isLoading}
 					>
-						Sign In
+						Đăng nhập
 					</Button>
 				</form>
 
 				<div className="signup-tips">
-					<p>Not a member ?</p>
+					<p>Chưa có tài khoản ?</p>
 					<div className="btn-signup" onClick={goToSignUp}>
-						Create account
+						Tạo tài khoản mới
 					</div>
 				</div>
 			</div>

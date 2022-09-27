@@ -20,7 +20,10 @@ import { signUpAction } from "../utils/authAction";
 // import './_signUp.scss'
 
 const schema = yup.object({
-	taiKhoan: yup.string().required("*Trường này bắt buộc nhập !"),
+	taiKhoan: yup
+		.string()
+		.required("*Trường này bắt buộc nhập !")
+		.min(6, "*Tài khoản tối thiểu 6 kí tự"),
 	matKhau: yup
 		.string()
 		.required("*Trường này bắt buộc nhập !")
@@ -289,18 +292,18 @@ function SignUp() {
 							className="btn-submit"
 							loading={isLoading}
 						>
-							Sign Up
+							Tạo tài khoản
 						</Button>
 					</form>
 
 					<div className="signin-tips">
-						<p>You have a account ?</p>
+						<p>Bạn đã có tài khoản ?</p>
 						<Button
 							type="primary"
 							className="btn-signin"
 							onClick={goToSignIn}
 						>
-							Sign In
+							Đăng nhập
 						</Button>
 					</div>
 				</div>
