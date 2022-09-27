@@ -85,8 +85,21 @@ function CinemasGroup() {
 		setTheaterContent(theater);
 	};
 
-	if (!newListTheater) return <Spin size="large" />;
-	if (!theaterGroup) return <Spin size="large" />;
+	if (!newListTheater) {
+		return (
+			<div style={{ textAlign: "center" }}>
+				<Spin size="large" />
+			</div>
+		);
+	}
+
+	if (!theaterGroup) {
+		return (
+			<div style={{ textAlign: "center" }}>
+				<Spin size="large" />
+			</div>
+		);
+	}
 
 	// console.log(theaterContent);
 	// Setting table antd

@@ -23,8 +23,13 @@ const FilterMovies = () => {
 		theaterGroupFetch();
 	}, []);
 	if (!theaterList) {
-		return <Spin className="spin" size="large"></Spin>;
+		return (
+			<div style={{ textAlign: "center" }}>
+				<Spin size="large" />
+			</div>
+		);
 	}
+
 	return (
 		<div className="filter" id="filterMovieId">
 			<div className="container">

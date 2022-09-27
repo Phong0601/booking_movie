@@ -26,7 +26,11 @@ function Banner() {
 	}, []);
 
 	if (!banner) {
-		return <Spin size="large" />;
+		return (
+			<div style={{ textAlign: "center" }}>
+				<Spin size="large" />
+			</div>
+		);
 	}
 
 	const settings = {

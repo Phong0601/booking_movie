@@ -25,7 +25,13 @@ function NowShowingMovie() {
 		fetchNowShowingMovie();
 	}, []);
 
-	if (!movieList) return <Spin size="large" />;
+	if (!movieList) {
+		return (
+			<div style={{ textAlign: "center" }}>
+				<Spin size="large" />
+			</div>
+		);
+	}
 
 	const showingMovie = movieList.filter((item) => {
 		return item.dangChieu === true;
