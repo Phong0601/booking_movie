@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Spin } from "antd";
 import {
 	UserOutlined,
 	CalendarOutlined,
@@ -12,6 +12,7 @@ import { fetchProfileAction } from "features/authentication/utils/authAction";
 import logoSonic from "../../../assets/img/icon/logo-sonic.png";
 import Swal from "sweetalert2";
 import { Link } from "react-scroll";
+import SearchBar from "./components/SearchBar";
 
 const Header = () => {
 	const [current, setCurrent] = useState("");
@@ -219,6 +220,10 @@ const Header = () => {
 								Đặt Vé <br /> Xem Phim
 							</p>
 						</div>
+					</div>
+					{/* Created --by Hung */}
+					<div className="middle">
+						<SearchBar />
 					</div>
 					<Menu
 						onClick={onClick}

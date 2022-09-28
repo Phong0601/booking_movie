@@ -46,6 +46,8 @@
 @import "features/movies/components/ScrollToTop/scrollToTop";
 // Footer
 @import "common/components/Footer/footer";
+// Header -> SearchBar  --by Hung
+@import "common/components/Header/components/SearchBar/searchBar";
 
 ///////
 @import "features/movies/pages/home/components/filterMovies/components/theater-group/TheaterGroup";

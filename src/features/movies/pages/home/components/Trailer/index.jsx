@@ -40,12 +40,12 @@ function Trailer() {
 	// Setting for slick slider
 	const settings = {
 		dots: true,
-		infinite: false,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 4,
 		slidesToScroll: 4,
 		autoplay: true,
-		autoplaySpeed: 2000,
+		autoplaySpeed: 3000,
 		nextArrow: <SampleNextArrow />,
 		prevArrow: <SamplePrevArrow />,
 

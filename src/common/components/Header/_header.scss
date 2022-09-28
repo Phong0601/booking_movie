@@ -36,16 +36,46 @@
 				}
 			}
 		}
+
+		// add -- by Hung
+		.middle {
+			width: 30%;
+			position: relative;
+			height: 50px;
+		}
+
 		.right {
 			display: flex;
 			justify-content: end;
 			font-size: 1.5rem;
-			width: 70%;
+			width: 40%;
 			border-bottom: none;
 			color: #525252;
 			font-weight: 600;
 			.nav-sub {
 				margin-left: 20px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.Header {
+		.navbar {
+			.left {
+				.ticket {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.Header {
+		.navbar {
+			.middle {
+				width: 60%;
 			}
 		}
 	}
