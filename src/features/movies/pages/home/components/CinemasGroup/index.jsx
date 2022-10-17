@@ -1,8 +1,4 @@
-import {
-	DesktopOutlined,
-	EnvironmentOutlined,
-	SearchOutlined,
-} from "@ant-design/icons";
+import { DesktopOutlined, EnvironmentOutlined, SearchOutlined } from "@ant-design/icons";
 import { Card, Col, Input, Rate, Row, Spin, Table } from "antd";
 import instance from "api/instance";
 import axios from "axios";
@@ -132,10 +128,7 @@ function CinemasGroup() {
 				<div className="theater-group">
 					{theaterGroup?.map((item) => {
 						return (
-							<div
-								className="theater-item"
-								key={item.maHeThongRap}
-							>
+							<div className="theater-item" key={item.maHeThongRap}>
 								<img src={item.logo} width={40} alt="" />
 							</div>
 						);
@@ -159,18 +152,14 @@ function CinemasGroup() {
 							<div className="theater-list">
 								{newListTheater
 									?.filter((item) =>
-										item.tenCumRap
-											.toLowerCase()
-											.includes(query)
+										item.tenCumRap.toLowerCase().includes(query)
 									)
 									.map((item, index) => {
 										return (
 											<div
 												key={item.maCumRap}
 												className={
-													"theater" +
-													" " +
-													toggleActive(index)
+													"theater" + " " + toggleActive(index)
 												}
 												onClick={() => {
 													handleChangeTheater(item);
@@ -190,9 +179,7 @@ function CinemasGroup() {
 							{theaterContent ? (
 								<div className="detail">
 									<div className="theater-name">
-										<div className="left">
-											Tên cụm rạp:{" "}
-										</div>
+										<div className="left">Tên cụm rạp: </div>
 										<div className="right">
 											{theaterContent.tenCumRap}
 										</div>

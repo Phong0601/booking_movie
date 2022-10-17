@@ -93,9 +93,7 @@ function SignUp() {
 			const data = await dispatch(signUpAction(user));
 			if (!data.payload) {
 				setIsLoading(false);
-				return alert(
-					"Tài khoản hoặc email đã tồn tại, vui lòng nhập lại !"
-				);
+				return alert("Tài khoản hoặc email đã tồn tại, vui lòng nhập lại !");
 			} else {
 				setIsLoading(false);
 				alert("Đăng kí thành công !");
@@ -120,10 +118,7 @@ function SignUp() {
 	};
 
 	return (
-		<div
-			className="SignUp"
-			style={{ backgroundImage: "url(/bg/bgSignup.jpg)" }}
-		>
+		<div className="SignUp" style={{ backgroundImage: "url(/bg/bgSignup.jpg)" }}>
 			<div className="container">
 				<div className="content">
 					<h2 className="title">Đăng kí tài khoản</h2>
@@ -139,20 +134,13 @@ function SignUp() {
 									className="input"
 									type="text"
 									placeholder="Username"
-									prefix={
-										<UserOutlined
-											style={{ marginRight: 8 }}
-										/>
-									}
+									prefix={<UserOutlined style={{ marginRight: 8 }} />}
 								/>
 							</div>
 
-							{formik.touched.taiKhoan &&
-								formik.errors.taiKhoan && (
-									<p className="errorText">
-										{formik.errors.taiKhoan}
-									</p>
-								)}
+							{formik.touched.taiKhoan && formik.errors.taiKhoan && (
+								<p className="errorText">{formik.errors.taiKhoan}</p>
+							)}
 						</div>
 
 						<div className="form-group">
@@ -165,19 +153,12 @@ function SignUp() {
 									className="input"
 									type="password"
 									placeholder="Password"
-									prefix={
-										<LockOutlined
-											style={{ marginRight: 8 }}
-										/>
-									}
+									prefix={<LockOutlined style={{ marginRight: 8 }} />}
 								/>
 							</div>
-							{formik.touched.matKhau &&
-								formik.errors.matKhau && (
-									<p className="errorText">
-										{formik.errors.matKhau}
-									</p>
-								)}
+							{formik.touched.matKhau && formik.errors.matKhau && (
+								<p className="errorText">{formik.errors.matKhau}</p>
+							)}
 						</div>
 
 						<div className="form-group">
@@ -191,16 +172,12 @@ function SignUp() {
 									type="text"
 									placeholder="FullName"
 									prefix={
-										<FileTextOutlined
-											style={{ marginRight: 8 }}
-										/>
+										<FileTextOutlined style={{ marginRight: 8 }} />
 									}
 								/>
 							</div>
 							{formik.touched.hoTen && formik.errors.hoTen && (
-								<p className="errorText">
-									{formik.errors.hoTen}
-								</p>
+								<p className="errorText">{formik.errors.hoTen}</p>
 							)}
 						</div>
 
@@ -214,17 +191,11 @@ function SignUp() {
 									className="input"
 									type="text"
 									placeholder="Email"
-									prefix={
-										<MailOutlined
-											style={{ marginRight: 8 }}
-										/>
-									}
+									prefix={<MailOutlined style={{ marginRight: 8 }} />}
 								/>
 							</div>
 							{formik.touched.email && formik.errors.email && (
-								<p className="errorText">
-									{formik.errors.email}
-								</p>
+								<p className="errorText">{formik.errors.email}</p>
 							)}
 						</div>
 
@@ -238,17 +209,11 @@ function SignUp() {
 									className="input"
 									type="text"
 									placeholder="Phone"
-									prefix={
-										<PhoneOutlined
-											style={{ marginRight: 8 }}
-										/>
-									}
+									prefix={<PhoneOutlined style={{ marginRight: 8 }} />}
 								/>
 							</div>
 							{formik.touched.soDt && formik.errors.soDt && (
-								<p className="errorText">
-									{formik.errors.soDt}
-								</p>
+								<p className="errorText">{formik.errors.soDt}</p>
 							)}
 						</div>
 

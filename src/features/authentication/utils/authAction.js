@@ -37,19 +37,16 @@ export const signInAction = createAsyncThunk("auth/signIn", async (user) => {
 });
 
 // Profile - get info
-export const fetchProfileAction = createAsyncThunk(
-	"auth/fetchProfile",
-	async () => {
-		try {
-			const res = await instance.request({
-				url: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
-				method: "POST",
-			});
-			// console.log(res.data.content);
-			return res.data.content;
-		} catch (err) {}
-	}
-);
+export const fetchProfileAction = createAsyncThunk("auth/fetchProfile", async () => {
+	try {
+		const res = await instance.request({
+			url: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+			method: "POST",
+		});
+		// console.log(res.data.content);
+		return res.data.content;
+	} catch (err) {}
+});
 
 // Update Profile
 export const fetchUpdateProfileAction = createAsyncThunk(
