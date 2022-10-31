@@ -22,6 +22,12 @@ const UpdateUser = lazy(() =>
 	import("features/authentication/Profile/components/UpdateUser")
 );
 
+const CinemasGroup = lazy(() =>
+	import("features/movies/pages/home/components/CinemasGroup")
+);
+const Event = lazy(() => import("features/movies/pages/Event"));
+const Support = lazy(() => import("features/movies/pages/Support"));
+
 function App() {
 	// maintain my account --by Hung
 	const dispatch = useDispatch();
@@ -34,9 +40,7 @@ function App() {
 			<Router>
 				<Header />
 				<Suspense
-					fallback={
-						<div style={{ textAlign: "center" }}>Đang tải...</div>
-					}
+					fallback={<div style={{ textAlign: "center" }}>Đang tải...</div>}
 				>
 					<Switch>
 						<Route path="/" component={Home} exact />
@@ -49,6 +53,11 @@ function App() {
 						/>
 						<Route path="/signin" component={SignIn} />
 						<Route path="/signup" component={SignUp} />
+
+						<Route path="/cinemas-list" component={CinemasGroup} />
+						<Route path="/event" component={Event} />
+						<Route path="/support" component={Support} />
+
 						<PrivateRoute
 							path="/profile"
 							component={Profile}

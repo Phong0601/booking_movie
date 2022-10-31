@@ -17,8 +17,8 @@ function CinemasGroup() {
 	const [listDetail, setListDetail] = useState([]);
 	const mergeArr = () => {
 		const arr = [];
-		listDetail.map((item) => {
-			return item.map((item2) => {
+		listDetail?.map((item) => {
+			return item?.map((item2) => {
 				return arr.push(item2);
 			});
 		});

@@ -4,6 +4,18 @@ import {
 	UserOutlined,
 	CalendarOutlined,
 	HomeOutlined,
+	FormOutlined,
+	LoginOutlined,
+	OrderedListOutlined,
+	DropboxOutlined,
+	RedditOutlined,
+	UserAddOutlined,
+	FundProjectionScreenOutlined,
+	DeploymentUnitOutlined,
+	UnorderedListOutlined,
+	ClusterOutlined,
+	MacCommandOutlined,
+	LogoutOutlined,
 } from "@ant-design/icons";
 import instance from "api/instance";
 import { NavLink, useHistory } from "react-router-dom";
@@ -67,82 +79,82 @@ const Header = () => {
 	const onClick = (e) => {
 		// console.log(e);
 		setCurrent(e.key);
-		// Add by Hung
-		if (e.key === "5") {
+
+		if (e.key === "home") {
+			history.push("/");
+		}
+
+		if (e.key === "signin") {
 			goToSignIn();
 		}
+
+		if (e.key === "signup") {
+			history.push("/signup");
+		}
+
 		if (e.key === "profile-1") {
 			goToProfile();
 		}
 		if (e.key === "6") {
 			logout();
 		}
-		// Scroll element
+
+		/////
+		if (e.key === "cate-1") {
+			history.push("/cinemas-list");
+		}
+
+		if (e.key === "cate-2") {
+			history.push("/support");
+		}
+		if (e.key === "cate-3") {
+			history.push("/event");
+		}
 	};
 
 	const items = [
 		{
-			label: "Rạp Chiếu",
-			key: "sub-1",
+			label: "Trang Chủ",
+			key: "home",
 			icon: <HomeOutlined />,
+		},
+		{
+			label: "Danh Mục",
+			key: "sub-1",
+			icon: <UnorderedListOutlined />,
 			children: [
 				{
-					label: <Link to="cinemasGroup">CGV</Link>,
-					key: "1",
+					label: "Danh Sách Rạp",
+					key: "cate-1",
+					icon: <ClusterOutlined />,
 				},
 				{
-					label: <Link to="cinemasGroup">GALAXY</Link>,
-					key: "2",
+					label: "Hỗ Trợ",
+					key: "cate-2",
+					icon: <RedditOutlined />,
 				},
 				{
-					label: <Link to="cinemasGroup">CINE STAR</Link>,
-					key: "7",
-				},
-				{
-					label: "BHD Star Cineplex",
-					key: "8",
-				},
-				{
-					label: "LotteCinima",
-					key: "9",
-				},
-				{
-					label: "MegaGS",
-					key: "10",
+					label: "Sự Kiện",
+					key: "cate-3",
+					icon: <DropboxOutlined />,
 				},
 			],
 		},
+
 		{
-			label: "Lịch Chiếu",
-			key: "sub-2",
-			icon: <CalendarOutlined />,
-			children: [
-				{
-					label: <Link to="nowShowing">Phim Đang Chiếu</Link>,
-					key: "child-1",
-				},
-				{
-					label: <Link to="upComing">Phim Sắp Chiếu</Link>,
-					key: "child-2",
-				},
-				{
-					label: <Link to="filterMovieId">Lịch Chiếu Theo Rạp</Link>,
-					key: "child-3",
-				},
-				{
-					label: <Link to="trailerId">Trailer Mới Nhất</Link>,
-					key: "child-4",
-				},
-			],
-		},
-		{
-			label: "Đăng Nhập",
+			label: "Tài khoản",
 			key: "sub-3",
 			icon: <UserOutlined />,
 			children: [
 				{
 					label: "Đăng Nhập",
-					key: "5",
+					key: "signin",
+					icon: <LoginOutlined />,
+				},
+				{
+					label: "Đăng Ký",
+					key: "signup",
+					icon: <FormOutlined />,
 				},
 			],
 		},
@@ -168,26 +180,23 @@ const Header = () => {
 	const userProfile = useSelector((state) => state.auth.profile);
 	const renderUserInfo = () => {
 		if (userProfile) {
-			items[2].label = `Hi,  ${upperCaseFirst(
-				formatName(userProfile.hoTen)
-			)}`;
+			items[2].label = `Hi,  ${upperCaseFirst(formatName(userProfile.hoTen))}`;
 			items[2].children[0] = {
 				label: "Thông tin cá nhân",
 				key: "profile-1",
+				icon: <MacCommandOutlined />,
 			};
 
 			items[2].children[1] = {
 				label: "Đăng Xuất",
 				key: "6",
+				icon: <LogoutOutlined />,
 			};
 		}
 	};
 
 	return (
-		<Layout
-			className="Header"
-			style={{ display: "block", backgroundColor: "#fff" }}
-		>
+		<Layout className="Header" style={{ display: "block", backgroundColor: "#fff" }}>
 			<div className="container">
 				<Layout.Header className="navbar">
 					<div className="left">

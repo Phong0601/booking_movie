@@ -13,3 +13,12 @@ export const formatName = (name) => {
 export const upperCaseFirst = (string) => {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const formatFullName = (fullName) => {
+	var convertToArray = fullName.toLowerCase().split(" ");
+	var result = convertToArray.map((val) => {
+		return val.replace(val.charAt(0), val.charAt(0).toUpperCase());
+	});
+
+	return result.join(" ");
+};
