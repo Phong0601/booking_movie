@@ -4,6 +4,7 @@ import { fetchMoviesTheater, fetchTheater } from "../../utils/homeAction";
 import { useDispatch, useSelector } from "react-redux";
 import { theater, movieTheaterGroup } from "../../utils/homeSelector";
 import TheaterGroup from "./components/theater-group/TheaterGroup";
+import Loading from "common/components/Loading/Loading";
 const FilterMovies = () => {
 	const dispatch = useDispatch();
 	const theaterList = useSelector(theater);
@@ -25,7 +26,7 @@ const FilterMovies = () => {
 	if (!theaterList) {
 		return (
 			<div style={{ textAlign: "center" }}>
-				<Spin size="large" />
+				{/* <Loading/> */}
 			</div>
 		);
 	}

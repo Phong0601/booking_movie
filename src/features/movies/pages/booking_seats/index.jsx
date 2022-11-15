@@ -8,11 +8,13 @@ import "./booking.scss";
 import el from "date-fns/esm/locale/el/index.js";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Swal from "sweetalert2";
+import Loading from "common/components/Loading/Loading";
 const Booking = () => {
 	const matchIdTheater = useRouteMatch();
 	const [loading, setLoadding] = useState(false);
 	const [data, setData] = useState(null);
 	const [seatSelected, setSeatSelected] = useState([]);
+	
 
 	const history = useHistory();
 	const goToHome = () => {
@@ -69,8 +71,11 @@ const Booking = () => {
 
 	useEffect(() => {
 		fetchSeatBooking(matchIdTheater.params.id);
+		// setTimeout(() => {
+		// 	setLoading(true);
+		//   }, 5000);
 	}, []);
-	if (loading) return <Spin className="spin" size="large"></Spin>;
+	if (loading) return <Loading/>;
 	const selectSeat = (idSeat) => {
 		const found = data?.danhSachGhe.find((seat) => seat.maGhe == idSeat);
 		if (found !== -1) {
@@ -98,6 +103,7 @@ const Booking = () => {
 	};
 
 	return (
+
 		<div className="booking">
 			<div className="container">
 				<Row>

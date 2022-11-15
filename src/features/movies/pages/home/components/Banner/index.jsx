@@ -12,6 +12,7 @@ import SampleNextArrow from "../SliderArrow/SampleNextArrow";
 import SamplePrevArrow from "../SliderArrow/SamplePrevArrow";
 ///////////
 import { banners } from "./utils/bannerSelector";
+import Loading from "common/components/Loading/Loading";
 
 function Banner() {
 	const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function Banner() {
 	if (!banner) {
 		return (
 			<div style={{ textAlign: "center" }}>
-				<Spin size="large" />
+				{/* <Loading/> */}
 			</div>
 		);
 	}

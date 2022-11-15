@@ -2,6 +2,7 @@ import { DesktopOutlined, EnvironmentOutlined, SearchOutlined } from "@ant-desig
 import { Card, Col, Input, Rate, Row, Spin, Table } from "antd";
 import instance from "api/instance";
 import axios from "axios";
+import Loading from "common/components/Loading/Loading";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,21 +82,21 @@ function CinemasGroup() {
 		setTheaterContent(theater);
 	};
 
-	if (!newListTheater) {
+	if (!newListTheater && !theaterGroup) {
 		return (
 			<div style={{ textAlign: "center" }}>
-				<Spin size="large" />
+				<Loading/>
 			</div>
 		);
 	}
 
-	if (!theaterGroup) {
-		return (
-			<div style={{ textAlign: "center" }}>
-				<Spin size="large" />
-			</div>
-		);
-	}
+	// if (!theaterGroup) {
+	// 	return (
+	// 		<div style={{ textAlign: "center" }}>
+	// 			<Spin size="large" />
+	// 		</div>
+	// 	);
+	// }
 
 	// console.log(theaterContent);
 	// Setting table antd

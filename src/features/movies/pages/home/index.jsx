@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import FilterMovies from "./components/filterMovies/FilterMovies";
 // Slick slider --by Hung
@@ -9,18 +9,31 @@ import UpcomingMovie from "./components/UpcomingMovie";
 import Trailer from "./components/Trailer";
 import CinemasGroup from "./components/CinemasGroup";
 import ScrollToTop from "features/movies/components/ScrollToTop";
+import Loading from "common/components/Loading/Loading";
 const Home = () => {
-	return (
-		<div>
-			<ScrollToTop />
-			<Banner />
-			<NowShowingMovie />
-			<UpcomingMovie />
-			<FilterMovies />
-			<Trailer />
-			<CinemasGroup />
-		</div>
-	);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(true);
+    }, 4000);
+  }, []);
+  return (
+    <div>
+      {loading ? (
+        <div>
+          <ScrollToTop />
+          <Banner />
+          <NowShowingMovie />
+          <UpcomingMovie />
+          <FilterMovies />
+          <Trailer />
+          <CinemasGroup />
+        </div>
+      ) : (
+        <Loading />
+      )}
+    </div>
+  );
 };
 
 export default Home;

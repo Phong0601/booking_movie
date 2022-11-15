@@ -1,5 +1,6 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
+import Loading from "common/components/Loading/Loading";
 import React, { useRef } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +29,7 @@ function UpcomingMovie() {
 	if (!movieList) {
 		return (
 			<div style={{ textAlign: "center" }}>
-				<Spin size="large" />
+				{/* <Loading/> */}
 			</div>
 		);
 	}
